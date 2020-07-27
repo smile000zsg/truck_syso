@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.ServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Service" >
+    <id column="Service_id" property="serviceId" jdbcType="INTEGER" />
+    <result column="Service_typeid" property="serviceTypeid" jdbcType="INTEGER" />
+    <result column="Service_number" property="serviceNumber" jdbcType="VARCHAR" />
+    <result column="Service_name" property="serviceName" jdbcType="VARCHAR" />
+    <result column="Service_price" property="servicePrice" jdbcType="DECIMAL" />
+    <result column="Service_vipprice" property="serviceVipprice" jdbcType="DECIMAL" />
+    <result column="Service_starttime" property="serviceStarttime" jdbcType="TIMESTAMP" />
+    <result column="Service_endtime" property="serviceEndtime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Service_id, Service_typeid, Service_number, Service_name, Service_price, Service_vipprice, 
+    Service_starttime, Service_endtime, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from service
+    where Service_id = #{serviceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from service
+    where Service_id = #{serviceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Service" >
+    insert into service (Service_id, Service_typeid, Service_number, 
+      Service_name, Service_price, Service_vipprice, 
+      Service_starttime, Service_endtime, state
+      )
+    values (#{serviceId,jdbcType=INTEGER}, #{serviceTypeid,jdbcType=INTEGER}, #{serviceNumber,jdbcType=VARCHAR}, 
+      #{serviceName,jdbcType=VARCHAR}, #{servicePrice,jdbcType=DECIMAL}, #{serviceVipprice,jdbcType=DECIMAL}, 
+      #{serviceStarttime,jdbcType=TIMESTAMP}, #{serviceEndtime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Service" >
+    insert into service
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serviceId != null" >
+        Service_id,
+      </if>
+      <if test="serviceTypeid != null" >
+        Service_typeid,
+      </if>
+      <if test="serviceNumber != null" >
+        Service_number,
+      </if>
+      <if test="serviceName != null" >
+        Service_name,
+      </if>
+      <if test="servicePrice != null" >
+        Service_price,
+      </if>
+      <if test="serviceVipprice != null" >
+        Service_vipprice,
+      </if>
+      <if test="serviceStarttime != null" >
+        Service_starttime,
+      </if>
+      <if test="serviceEndtime != null" >
+        Service_endtime,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceTypeid != null" >
+        #{serviceTypeid,jdbcType=INTEGER},
+      </if>
+      <if test="serviceNumber != null" >
+        #{serviceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null" >
+        #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePrice != null" >
+        #{servicePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceVipprice != null" >
+        #{serviceVipprice,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceStarttime != null" >
+        #{serviceStarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serviceEndtime != null" >
+        #{serviceEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Service" >
+    update service
+    <set >
+      <if test="serviceTypeid != null" >
+        Service_typeid = #{serviceTypeid,jdbcType=INTEGER},
+      </if>
+      <if test="serviceNumber != null" >
+        Service_number = #{serviceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null" >
+        Service_name = #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePrice != null" >
+        Service_price = #{servicePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceVipprice != null" >
+        Service_vipprice = #{serviceVipprice,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceStarttime != null" >
+        Service_starttime = #{serviceStarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serviceEndtime != null" >
+        Service_endtime = #{serviceEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Service_id = #{serviceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Service" >
+    update service
+    set Service_typeid = #{serviceTypeid,jdbcType=INTEGER},
+      Service_number = #{serviceNumber,jdbcType=VARCHAR},
+      Service_name = #{serviceName,jdbcType=VARCHAR},
+      Service_price = #{servicePrice,jdbcType=DECIMAL},
+      Service_vipprice = #{serviceVipprice,jdbcType=DECIMAL},
+      Service_starttime = #{serviceStarttime,jdbcType=TIMESTAMP},
+      Service_endtime = #{serviceEndtime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER}
+    where Service_id = #{serviceId,jdbcType=INTEGER}
+  </update>
+</mapper>

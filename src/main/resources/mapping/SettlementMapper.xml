@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.SettlementMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Settlement" >
+    <id column="settlementid" property="settlementid" jdbcType="INTEGER" />
+    <result column="oid" property="oid" jdbcType="VARCHAR" />
+    <result column="saleon" property="saleon" jdbcType="VARCHAR" />
+    <result column="billtype" property="billtype" jdbcType="VARCHAR" />
+    <result column="settlementmode" property="settlementmode" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="paymenttime" property="paymenttime" jdbcType="DATE" />
+    <result column="total" property="total" jdbcType="REAL" />
+    <result column="deductionprice" property="deductionprice" jdbcType="REAL" />
+    <result column="customername" property="customername" jdbcType="VARCHAR" />
+    <result column="businesstype" property="businesstype" jdbcType="VARCHAR" />
+    <result column="carbrand" property="carbrand" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    settlementid, oid, saleon, billtype, settlementmode, state, paymenttime, total, deductionprice, 
+    customername, businesstype, carbrand
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from settlement
+    where settlementid = #{settlementid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from settlement
+    where settlementid = #{settlementid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Settlement" >
+    insert into settlement (settlementid, oid, saleon, 
+      billtype, settlementmode, state, 
+      paymenttime, total, deductionprice, 
+      customername, businesstype, carbrand
+      )
+    values (#{settlementid,jdbcType=INTEGER}, #{oid,jdbcType=VARCHAR}, #{saleon,jdbcType=VARCHAR}, 
+      #{billtype,jdbcType=VARCHAR}, #{settlementmode,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{paymenttime,jdbcType=DATE}, #{total,jdbcType=REAL}, #{deductionprice,jdbcType=REAL}, 
+      #{customername,jdbcType=VARCHAR}, #{businesstype,jdbcType=VARCHAR}, #{carbrand,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Settlement" >
+    insert into settlement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="settlementid != null" >
+        settlementid,
+      </if>
+      <if test="oid != null" >
+        oid,
+      </if>
+      <if test="saleon != null" >
+        saleon,
+      </if>
+      <if test="billtype != null" >
+        billtype,
+      </if>
+      <if test="settlementmode != null" >
+        settlementmode,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="paymenttime != null" >
+        paymenttime,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="deductionprice != null" >
+        deductionprice,
+      </if>
+      <if test="customername != null" >
+        customername,
+      </if>
+      <if test="businesstype != null" >
+        businesstype,
+      </if>
+      <if test="carbrand != null" >
+        carbrand,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="settlementid != null" >
+        #{settlementid,jdbcType=INTEGER},
+      </if>
+      <if test="oid != null" >
+        #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="saleon != null" >
+        #{saleon,jdbcType=VARCHAR},
+      </if>
+      <if test="billtype != null" >
+        #{billtype,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementmode != null" >
+        #{settlementmode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="paymenttime != null" >
+        #{paymenttime,jdbcType=DATE},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=REAL},
+      </if>
+      <if test="deductionprice != null" >
+        #{deductionprice,jdbcType=REAL},
+      </if>
+      <if test="customername != null" >
+        #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="businesstype != null" >
+        #{businesstype,jdbcType=VARCHAR},
+      </if>
+      <if test="carbrand != null" >
+        #{carbrand,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Settlement" >
+    update settlement
+    <set >
+      <if test="oid != null" >
+        oid = #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="saleon != null" >
+        saleon = #{saleon,jdbcType=VARCHAR},
+      </if>
+      <if test="billtype != null" >
+        billtype = #{billtype,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementmode != null" >
+        settlementmode = #{settlementmode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="paymenttime != null" >
+        paymenttime = #{paymenttime,jdbcType=DATE},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=REAL},
+      </if>
+      <if test="deductionprice != null" >
+        deductionprice = #{deductionprice,jdbcType=REAL},
+      </if>
+      <if test="customername != null" >
+        customername = #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="businesstype != null" >
+        businesstype = #{businesstype,jdbcType=VARCHAR},
+      </if>
+      <if test="carbrand != null" >
+        carbrand = #{carbrand,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where settlementid = #{settlementid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Settlement" >
+    update settlement
+    set oid = #{oid,jdbcType=VARCHAR},
+      saleon = #{saleon,jdbcType=VARCHAR},
+      billtype = #{billtype,jdbcType=VARCHAR},
+      settlementmode = #{settlementmode,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      paymenttime = #{paymenttime,jdbcType=DATE},
+      total = #{total,jdbcType=REAL},
+      deductionprice = #{deductionprice,jdbcType=REAL},
+      customername = #{customername,jdbcType=VARCHAR},
+      businesstype = #{businesstype,jdbcType=VARCHAR},
+      carbrand = #{carbrand,jdbcType=VARCHAR}
+    where settlementid = #{settlementid,jdbcType=INTEGER}
+  </update>
+</mapper>

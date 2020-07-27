@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.Supplier_LinkmanMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Supplier_Linkman" >
+    <id column="supplier_linkmanid" property="supplierLinkmanid" jdbcType="INTEGER" />
+    <result column="supplier_linkmannumber" property="supplierLinkmannumber" jdbcType="VARCHAR" />
+    <result column="supplier_linkmanpost" property="supplierLinkmanpost" jdbcType="VARCHAR" />
+    <result column="supplier_linkmanname" property="supplierLinkmanname" jdbcType="VARCHAR" />
+    <result column="supplier_linkmanipone" property="supplierLinkmanipone" jdbcType="VARCHAR" />
+    <result column="supplier_linkmanemil" property="supplierLinkmanemil" jdbcType="VARCHAR" />
+    <result column="supplier_linkmanstate" property="supplierLinkmanstate" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    supplier_linkmanid, supplier_linkmannumber, supplier_linkmanpost, supplier_linkmanname, 
+    supplier_linkmanipone, supplier_linkmanemil, supplier_linkmanstate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from supplier_linkman
+    where supplier_linkmanid = #{supplierLinkmanid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from supplier_linkman
+    where supplier_linkmanid = #{supplierLinkmanid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Supplier_Linkman" >
+    insert into supplier_linkman (supplier_linkmanid, supplier_linkmannumber, 
+      supplier_linkmanpost, supplier_linkmanname, 
+      supplier_linkmanipone, supplier_linkmanemil, 
+      supplier_linkmanstate)
+    values (#{supplierLinkmanid,jdbcType=INTEGER}, #{supplierLinkmannumber,jdbcType=VARCHAR}, 
+      #{supplierLinkmanpost,jdbcType=VARCHAR}, #{supplierLinkmanname,jdbcType=VARCHAR}, 
+      #{supplierLinkmanipone,jdbcType=VARCHAR}, #{supplierLinkmanemil,jdbcType=VARCHAR}, 
+      #{supplierLinkmanstate,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Supplier_Linkman" >
+    insert into supplier_linkman
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="supplierLinkmanid != null" >
+        supplier_linkmanid,
+      </if>
+      <if test="supplierLinkmannumber != null" >
+        supplier_linkmannumber,
+      </if>
+      <if test="supplierLinkmanpost != null" >
+        supplier_linkmanpost,
+      </if>
+      <if test="supplierLinkmanname != null" >
+        supplier_linkmanname,
+      </if>
+      <if test="supplierLinkmanipone != null" >
+        supplier_linkmanipone,
+      </if>
+      <if test="supplierLinkmanemil != null" >
+        supplier_linkmanemil,
+      </if>
+      <if test="supplierLinkmanstate != null" >
+        supplier_linkmanstate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="supplierLinkmanid != null" >
+        #{supplierLinkmanid,jdbcType=INTEGER},
+      </if>
+      <if test="supplierLinkmannumber != null" >
+        #{supplierLinkmannumber,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinkmanpost != null" >
+        #{supplierLinkmanpost,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinkmanname != null" >
+        #{supplierLinkmanname,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinkmanipone != null" >
+        #{supplierLinkmanipone,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinkmanemil != null" >
+        #{supplierLinkmanemil,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinkmanstate != null" >
+        #{supplierLinkmanstate,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Supplier_Linkman" >
+    update supplier_linkman
+    <set >
+      <if test="supplierLinkmannumber != null" >
+        supplier_linkmannumber = #{supplierLinkmannumber,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinkmanpost != null" >
+        supplier_linkmanpost = #{supplierLinkmanpost,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinkmanname != null" >
+        supplier_linkmanname = #{supplierLinkmanname,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinkmanipone != null" >
+        supplier_linkmanipone = #{supplierLinkmanipone,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinkmanemil != null" >
+        supplier_linkmanemil = #{supplierLinkmanemil,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinkmanstate != null" >
+        supplier_linkmanstate = #{supplierLinkmanstate,jdbcType=INTEGER},
+      </if>
+    </set>
+    where supplier_linkmanid = #{supplierLinkmanid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Supplier_Linkman" >
+    update supplier_linkman
+    set supplier_linkmannumber = #{supplierLinkmannumber,jdbcType=VARCHAR},
+      supplier_linkmanpost = #{supplierLinkmanpost,jdbcType=VARCHAR},
+      supplier_linkmanname = #{supplierLinkmanname,jdbcType=VARCHAR},
+      supplier_linkmanipone = #{supplierLinkmanipone,jdbcType=VARCHAR},
+      supplier_linkmanemil = #{supplierLinkmanemil,jdbcType=VARCHAR},
+      supplier_linkmanstate = #{supplierLinkmanstate,jdbcType=INTEGER}
+    where supplier_linkmanid = #{supplierLinkmanid,jdbcType=INTEGER}
+  </update>
+</mapper>

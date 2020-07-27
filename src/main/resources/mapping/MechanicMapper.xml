@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.MechanicMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Mechanic" >
+    <id column="mecid" property="mecid" jdbcType="INTEGER" />
+    <result column="teamsid" property="teamsid" jdbcType="INTEGER" />
+    <result column="starsid" property="starsid" jdbcType="INTEGER" />
+    <result column="oid" property="oid" jdbcType="VARCHAR" />
+    <result column="mecname" property="mecname" jdbcType="VARCHAR" />
+    <result column="mecsex" property="mecsex" jdbcType="VARCHAR" />
+    <result column="mecphone" property="mecphone" jdbcType="VARCHAR" />
+    <result column="mecborndate" property="mecborndate" jdbcType="DATE" />
+    <result column="mecaddress" property="mecaddress" jdbcType="VARCHAR" />
+    <result column="meccard" property="meccard" jdbcType="VARCHAR" />
+    <result column="mecstate" property="mecstate" jdbcType="INTEGER" />
+    <result column="mecprice" property="mecprice" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mecid, teamsid, starsid, oid, mecname, mecsex, mecphone, mecborndate, mecaddress, 
+    meccard, mecstate, mecprice
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mechanic
+    where mecid = #{mecid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mechanic
+    where mecid = #{mecid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Mechanic" >
+    insert into mechanic (mecid, teamsid, starsid, 
+      oid, mecname, mecsex, 
+      mecphone, mecborndate, mecaddress, 
+      meccard, mecstate, mecprice
+      )
+    values (#{mecid,jdbcType=INTEGER}, #{teamsid,jdbcType=INTEGER}, #{starsid,jdbcType=INTEGER}, 
+      #{oid,jdbcType=VARCHAR}, #{mecname,jdbcType=VARCHAR}, #{mecsex,jdbcType=VARCHAR}, 
+      #{mecphone,jdbcType=VARCHAR}, #{mecborndate,jdbcType=DATE}, #{mecaddress,jdbcType=VARCHAR}, 
+      #{meccard,jdbcType=VARCHAR}, #{mecstate,jdbcType=INTEGER}, #{mecprice,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Mechanic" >
+    insert into mechanic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mecid != null" >
+        mecid,
+      </if>
+      <if test="teamsid != null" >
+        teamsid,
+      </if>
+      <if test="starsid != null" >
+        starsid,
+      </if>
+      <if test="oid != null" >
+        oid,
+      </if>
+      <if test="mecname != null" >
+        mecname,
+      </if>
+      <if test="mecsex != null" >
+        mecsex,
+      </if>
+      <if test="mecphone != null" >
+        mecphone,
+      </if>
+      <if test="mecborndate != null" >
+        mecborndate,
+      </if>
+      <if test="mecaddress != null" >
+        mecaddress,
+      </if>
+      <if test="meccard != null" >
+        meccard,
+      </if>
+      <if test="mecstate != null" >
+        mecstate,
+      </if>
+      <if test="mecprice != null" >
+        mecprice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mecid != null" >
+        #{mecid,jdbcType=INTEGER},
+      </if>
+      <if test="teamsid != null" >
+        #{teamsid,jdbcType=INTEGER},
+      </if>
+      <if test="starsid != null" >
+        #{starsid,jdbcType=INTEGER},
+      </if>
+      <if test="oid != null" >
+        #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="mecname != null" >
+        #{mecname,jdbcType=VARCHAR},
+      </if>
+      <if test="mecsex != null" >
+        #{mecsex,jdbcType=VARCHAR},
+      </if>
+      <if test="mecphone != null" >
+        #{mecphone,jdbcType=VARCHAR},
+      </if>
+      <if test="mecborndate != null" >
+        #{mecborndate,jdbcType=DATE},
+      </if>
+      <if test="mecaddress != null" >
+        #{mecaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="meccard != null" >
+        #{meccard,jdbcType=VARCHAR},
+      </if>
+      <if test="mecstate != null" >
+        #{mecstate,jdbcType=INTEGER},
+      </if>
+      <if test="mecprice != null" >
+        #{mecprice,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Mechanic" >
+    update mechanic
+    <set >
+      <if test="teamsid != null" >
+        teamsid = #{teamsid,jdbcType=INTEGER},
+      </if>
+      <if test="starsid != null" >
+        starsid = #{starsid,jdbcType=INTEGER},
+      </if>
+      <if test="oid != null" >
+        oid = #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="mecname != null" >
+        mecname = #{mecname,jdbcType=VARCHAR},
+      </if>
+      <if test="mecsex != null" >
+        mecsex = #{mecsex,jdbcType=VARCHAR},
+      </if>
+      <if test="mecphone != null" >
+        mecphone = #{mecphone,jdbcType=VARCHAR},
+      </if>
+      <if test="mecborndate != null" >
+        mecborndate = #{mecborndate,jdbcType=DATE},
+      </if>
+      <if test="mecaddress != null" >
+        mecaddress = #{mecaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="meccard != null" >
+        meccard = #{meccard,jdbcType=VARCHAR},
+      </if>
+      <if test="mecstate != null" >
+        mecstate = #{mecstate,jdbcType=INTEGER},
+      </if>
+      <if test="mecprice != null" >
+        mecprice = #{mecprice,jdbcType=REAL},
+      </if>
+    </set>
+    where mecid = #{mecid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Mechanic" >
+    update mechanic
+    set teamsid = #{teamsid,jdbcType=INTEGER},
+      starsid = #{starsid,jdbcType=INTEGER},
+      oid = #{oid,jdbcType=VARCHAR},
+      mecname = #{mecname,jdbcType=VARCHAR},
+      mecsex = #{mecsex,jdbcType=VARCHAR},
+      mecphone = #{mecphone,jdbcType=VARCHAR},
+      mecborndate = #{mecborndate,jdbcType=DATE},
+      mecaddress = #{mecaddress,jdbcType=VARCHAR},
+      meccard = #{meccard,jdbcType=VARCHAR},
+      mecstate = #{mecstate,jdbcType=INTEGER},
+      mecprice = #{mecprice,jdbcType=REAL}
+    where mecid = #{mecid,jdbcType=INTEGER}
+  </update>
+</mapper>

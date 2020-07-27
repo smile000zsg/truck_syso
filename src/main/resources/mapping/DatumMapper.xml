@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.DatumMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Datum" >
+    <id column="did" property="did" jdbcType="INTEGER" />
+    <result column="clid" property="clid" jdbcType="VARCHAR" />
+    <result column="license" property="license" jdbcType="VARCHAR" />
+    <result column="dbrand" property="dbrand" jdbcType="VARCHAR" />
+    <result column="dsignal" property="dsignal" jdbcType="VARCHAR" />
+    <result column="pilot" property="pilot" jdbcType="VARCHAR" />
+    <result column="dphone" property="dphone" jdbcType="VARCHAR" />
+    <result column="ownership" property="ownership" jdbcType="VARCHAR" />
+    <result column="ddate" property="ddate" jdbcType="DATE" />
+    <result column="dcolor" property="dcolor" jdbcType="VARCHAR" />
+    <result column="mileage" property="mileage" jdbcType="VARCHAR" />
+    <result column="fuel" property="fuel" jdbcType="VARCHAR" />
+    <result column="dremark" property="dremark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    did, clid, license, dbrand, dsignal, pilot, dphone, ownership, ddate, dcolor, mileage, 
+    fuel, dremark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from datum
+    where did = #{did,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from datum
+    where did = #{did,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Datum" >
+    insert into datum (did, clid, license, 
+      dbrand, dsignal, pilot, 
+      dphone, ownership, ddate, 
+      dcolor, mileage, fuel, 
+      dremark)
+    values (#{did,jdbcType=INTEGER}, #{clid,jdbcType=VARCHAR}, #{license,jdbcType=VARCHAR}, 
+      #{dbrand,jdbcType=VARCHAR}, #{dsignal,jdbcType=VARCHAR}, #{pilot,jdbcType=VARCHAR}, 
+      #{dphone,jdbcType=VARCHAR}, #{ownership,jdbcType=VARCHAR}, #{ddate,jdbcType=DATE}, 
+      #{dcolor,jdbcType=VARCHAR}, #{mileage,jdbcType=VARCHAR}, #{fuel,jdbcType=VARCHAR}, 
+      #{dremark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Datum" >
+    insert into datum
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="did != null" >
+        did,
+      </if>
+      <if test="clid != null" >
+        clid,
+      </if>
+      <if test="license != null" >
+        license,
+      </if>
+      <if test="dbrand != null" >
+        dbrand,
+      </if>
+      <if test="dsignal != null" >
+        dsignal,
+      </if>
+      <if test="pilot != null" >
+        pilot,
+      </if>
+      <if test="dphone != null" >
+        dphone,
+      </if>
+      <if test="ownership != null" >
+        ownership,
+      </if>
+      <if test="ddate != null" >
+        ddate,
+      </if>
+      <if test="dcolor != null" >
+        dcolor,
+      </if>
+      <if test="mileage != null" >
+        mileage,
+      </if>
+      <if test="fuel != null" >
+        fuel,
+      </if>
+      <if test="dremark != null" >
+        dremark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="did != null" >
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="clid != null" >
+        #{clid,jdbcType=VARCHAR},
+      </if>
+      <if test="license != null" >
+        #{license,jdbcType=VARCHAR},
+      </if>
+      <if test="dbrand != null" >
+        #{dbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="dsignal != null" >
+        #{dsignal,jdbcType=VARCHAR},
+      </if>
+      <if test="pilot != null" >
+        #{pilot,jdbcType=VARCHAR},
+      </if>
+      <if test="dphone != null" >
+        #{dphone,jdbcType=VARCHAR},
+      </if>
+      <if test="ownership != null" >
+        #{ownership,jdbcType=VARCHAR},
+      </if>
+      <if test="ddate != null" >
+        #{ddate,jdbcType=DATE},
+      </if>
+      <if test="dcolor != null" >
+        #{dcolor,jdbcType=VARCHAR},
+      </if>
+      <if test="mileage != null" >
+        #{mileage,jdbcType=VARCHAR},
+      </if>
+      <if test="fuel != null" >
+        #{fuel,jdbcType=VARCHAR},
+      </if>
+      <if test="dremark != null" >
+        #{dremark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Datum" >
+    update datum
+    <set >
+      <if test="clid != null" >
+        clid = #{clid,jdbcType=VARCHAR},
+      </if>
+      <if test="license != null" >
+        license = #{license,jdbcType=VARCHAR},
+      </if>
+      <if test="dbrand != null" >
+        dbrand = #{dbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="dsignal != null" >
+        dsignal = #{dsignal,jdbcType=VARCHAR},
+      </if>
+      <if test="pilot != null" >
+        pilot = #{pilot,jdbcType=VARCHAR},
+      </if>
+      <if test="dphone != null" >
+        dphone = #{dphone,jdbcType=VARCHAR},
+      </if>
+      <if test="ownership != null" >
+        ownership = #{ownership,jdbcType=VARCHAR},
+      </if>
+      <if test="ddate != null" >
+        ddate = #{ddate,jdbcType=DATE},
+      </if>
+      <if test="dcolor != null" >
+        dcolor = #{dcolor,jdbcType=VARCHAR},
+      </if>
+      <if test="mileage != null" >
+        mileage = #{mileage,jdbcType=VARCHAR},
+      </if>
+      <if test="fuel != null" >
+        fuel = #{fuel,jdbcType=VARCHAR},
+      </if>
+      <if test="dremark != null" >
+        dremark = #{dremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where did = #{did,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Datum" >
+    update datum
+    set clid = #{clid,jdbcType=VARCHAR},
+      license = #{license,jdbcType=VARCHAR},
+      dbrand = #{dbrand,jdbcType=VARCHAR},
+      dsignal = #{dsignal,jdbcType=VARCHAR},
+      pilot = #{pilot,jdbcType=VARCHAR},
+      dphone = #{dphone,jdbcType=VARCHAR},
+      ownership = #{ownership,jdbcType=VARCHAR},
+      ddate = #{ddate,jdbcType=DATE},
+      dcolor = #{dcolor,jdbcType=VARCHAR},
+      mileage = #{mileage,jdbcType=VARCHAR},
+      fuel = #{fuel,jdbcType=VARCHAR},
+      dremark = #{dremark,jdbcType=VARCHAR}
+    where did = #{did,jdbcType=INTEGER}
+  </update>
+</mapper>

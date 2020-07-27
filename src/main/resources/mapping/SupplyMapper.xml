@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.SupplyMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Supply" >
+    <id column="supplier_provinceid" property="supplierProvinceid" jdbcType="INTEGER" />
+    <result column="supplier_provincename" property="supplierProvincename" jdbcType="VARCHAR" />
+    <result column="supplier_provincestate" property="supplierProvincestate" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    supplier_provinceid, supplier_provincename, supplier_provincestate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from supply
+    where supplier_provinceid = #{supplierProvinceid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from supply
+    where supplier_provinceid = #{supplierProvinceid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Supply" >
+    insert into supply (supplier_provinceid, supplier_provincename, 
+      supplier_provincestate)
+    values (#{supplierProvinceid,jdbcType=INTEGER}, #{supplierProvincename,jdbcType=VARCHAR}, 
+      #{supplierProvincestate,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Supply" >
+    insert into supply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="supplierProvinceid != null" >
+        supplier_provinceid,
+      </if>
+      <if test="supplierProvincename != null" >
+        supplier_provincename,
+      </if>
+      <if test="supplierProvincestate != null" >
+        supplier_provincestate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="supplierProvinceid != null" >
+        #{supplierProvinceid,jdbcType=INTEGER},
+      </if>
+      <if test="supplierProvincename != null" >
+        #{supplierProvincename,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierProvincestate != null" >
+        #{supplierProvincestate,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Supply" >
+    update supply
+    <set >
+      <if test="supplierProvincename != null" >
+        supplier_provincename = #{supplierProvincename,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierProvincestate != null" >
+        supplier_provincestate = #{supplierProvincestate,jdbcType=INTEGER},
+      </if>
+    </set>
+    where supplier_provinceid = #{supplierProvinceid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Supply" >
+    update supply
+    set supplier_provincename = #{supplierProvincename,jdbcType=VARCHAR},
+      supplier_provincestate = #{supplierProvincestate,jdbcType=INTEGER}
+    where supplier_provinceid = #{supplierProvinceid,jdbcType=INTEGER}
+  </update>
+</mapper>

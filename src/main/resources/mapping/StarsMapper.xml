@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.StarsMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Stars" >
+    <id column="starsid" property="starsid" jdbcType="INTEGER" />
+    <result column="starslevel" property="starslevel" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    starsid, starslevel
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from stars
+    where starsid = #{starsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from stars
+    where starsid = #{starsid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Stars" >
+    insert into stars (starsid, starslevel)
+    values (#{starsid,jdbcType=INTEGER}, #{starslevel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Stars" >
+    insert into stars
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="starsid != null" >
+        starsid,
+      </if>
+      <if test="starslevel != null" >
+        starslevel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="starsid != null" >
+        #{starsid,jdbcType=INTEGER},
+      </if>
+      <if test="starslevel != null" >
+        #{starslevel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Stars" >
+    update stars
+    <set >
+      <if test="starslevel != null" >
+        starslevel = #{starslevel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where starsid = #{starsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Stars" >
+    update stars
+    set starslevel = #{starslevel,jdbcType=VARCHAR}
+    where starsid = #{starsid,jdbcType=INTEGER}
+  </update>
+</mapper>

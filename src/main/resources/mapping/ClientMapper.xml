@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.ClientMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Client" >
+    <id column="clid" property="clid" jdbcType="VARCHAR" />
+    <result column="did" property="did" jdbcType="INTEGER" />
+    <result column="clname" property="clname" jdbcType="VARCHAR" />
+    <result column="cldate" property="cldate" jdbcType="DATE" />
+    <result column="clsex" property="clsex" jdbcType="VARCHAR" />
+    <result column="clidentity" property="clidentity" jdbcType="VARCHAR" />
+    <result column="clphone" property="clphone" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="clstate" property="clstate" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    clid, did, clname, cldate, clsex, clidentity, clphone, province, city, district, 
+    address, remark, clstate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from client
+    where clid = #{clid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from client
+    where clid = #{clid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Client" >
+    insert into client (clid, did, clname, 
+      cldate, clsex, clidentity, 
+      clphone, province, city, 
+      district, address, remark, 
+      clstate)
+    values (#{clid,jdbcType=VARCHAR}, #{did,jdbcType=INTEGER}, #{clname,jdbcType=VARCHAR}, 
+      #{cldate,jdbcType=DATE}, #{clsex,jdbcType=VARCHAR}, #{clidentity,jdbcType=VARCHAR}, 
+      #{clphone,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{district,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{clstate,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Client" >
+    insert into client
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clid != null" >
+        clid,
+      </if>
+      <if test="did != null" >
+        did,
+      </if>
+      <if test="clname != null" >
+        clname,
+      </if>
+      <if test="cldate != null" >
+        cldate,
+      </if>
+      <if test="clsex != null" >
+        clsex,
+      </if>
+      <if test="clidentity != null" >
+        clidentity,
+      </if>
+      <if test="clphone != null" >
+        clphone,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="district != null" >
+        district,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="clstate != null" >
+        clstate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clid != null" >
+        #{clid,jdbcType=VARCHAR},
+      </if>
+      <if test="did != null" >
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="clname != null" >
+        #{clname,jdbcType=VARCHAR},
+      </if>
+      <if test="cldate != null" >
+        #{cldate,jdbcType=DATE},
+      </if>
+      <if test="clsex != null" >
+        #{clsex,jdbcType=VARCHAR},
+      </if>
+      <if test="clidentity != null" >
+        #{clidentity,jdbcType=VARCHAR},
+      </if>
+      <if test="clphone != null" >
+        #{clphone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="clstate != null" >
+        #{clstate,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Client" >
+    update client
+    <set >
+      <if test="did != null" >
+        did = #{did,jdbcType=INTEGER},
+      </if>
+      <if test="clname != null" >
+        clname = #{clname,jdbcType=VARCHAR},
+      </if>
+      <if test="cldate != null" >
+        cldate = #{cldate,jdbcType=DATE},
+      </if>
+      <if test="clsex != null" >
+        clsex = #{clsex,jdbcType=VARCHAR},
+      </if>
+      <if test="clidentity != null" >
+        clidentity = #{clidentity,jdbcType=VARCHAR},
+      </if>
+      <if test="clphone != null" >
+        clphone = #{clphone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="clstate != null" >
+        clstate = #{clstate,jdbcType=INTEGER},
+      </if>
+    </set>
+    where clid = #{clid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Client" >
+    update client
+    set did = #{did,jdbcType=INTEGER},
+      clname = #{clname,jdbcType=VARCHAR},
+      cldate = #{cldate,jdbcType=DATE},
+      clsex = #{clsex,jdbcType=VARCHAR},
+      clidentity = #{clidentity,jdbcType=VARCHAR},
+      clphone = #{clphone,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      clstate = #{clstate,jdbcType=INTEGER}
+    where clid = #{clid,jdbcType=VARCHAR}
+  </update>
+</mapper>

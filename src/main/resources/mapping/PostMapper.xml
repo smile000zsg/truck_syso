@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.PostMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Post" >
+    <id column="postid" property="postid" jdbcType="INTEGER" />
+    <result column="deptid" property="deptid" jdbcType="INTEGER" />
+    <result column="postname" property="postname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    postid, deptid, postname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from post
+    where postid = #{postid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from post
+    where postid = #{postid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Post" >
+    insert into post (postid, deptid, postname
+      )
+    values (#{postid,jdbcType=INTEGER}, #{deptid,jdbcType=INTEGER}, #{postname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Post" >
+    insert into post
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="postid != null" >
+        postid,
+      </if>
+      <if test="deptid != null" >
+        deptid,
+      </if>
+      <if test="postname != null" >
+        postname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="postid != null" >
+        #{postid,jdbcType=INTEGER},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=INTEGER},
+      </if>
+      <if test="postname != null" >
+        #{postname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Post" >
+    update post
+    <set >
+      <if test="deptid != null" >
+        deptid = #{deptid,jdbcType=INTEGER},
+      </if>
+      <if test="postname != null" >
+        postname = #{postname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where postid = #{postid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Post" >
+    update post
+    set deptid = #{deptid,jdbcType=INTEGER},
+      postname = #{postname,jdbcType=VARCHAR}
+    where postid = #{postid,jdbcType=INTEGER}
+  </update>
+</mapper>

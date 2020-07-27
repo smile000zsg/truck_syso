@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.FieldvehicleMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Fieldvehicle" >
+    <id column="fieldid" property="fieldid" jdbcType="INTEGER" />
+    <result column="teamsid" property="teamsid" jdbcType="INTEGER" />
+    <result column="carno" property="carno" jdbcType="VARCHAR" />
+    <result column="carbrand" property="carbrand" jdbcType="VARCHAR" />
+    <result column="cartype" property="cartype" jdbcType="VARCHAR" />
+    <result column="carmilion" property="carmilion" jdbcType="REAL" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fieldid, teamsid, carno, carbrand, cartype, carmilion, state, price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fieldvehicle
+    where fieldid = #{fieldid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fieldvehicle
+    where fieldid = #{fieldid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Fieldvehicle" >
+    insert into fieldvehicle (fieldid, teamsid, carno, 
+      carbrand, cartype, carmilion, 
+      state, price)
+    values (#{fieldid,jdbcType=INTEGER}, #{teamsid,jdbcType=INTEGER}, #{carno,jdbcType=VARCHAR}, 
+      #{carbrand,jdbcType=VARCHAR}, #{cartype,jdbcType=VARCHAR}, #{carmilion,jdbcType=REAL}, 
+      #{state,jdbcType=INTEGER}, #{price,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Fieldvehicle" >
+    insert into fieldvehicle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fieldid != null" >
+        fieldid,
+      </if>
+      <if test="teamsid != null" >
+        teamsid,
+      </if>
+      <if test="carno != null" >
+        carno,
+      </if>
+      <if test="carbrand != null" >
+        carbrand,
+      </if>
+      <if test="cartype != null" >
+        cartype,
+      </if>
+      <if test="carmilion != null" >
+        carmilion,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fieldid != null" >
+        #{fieldid,jdbcType=INTEGER},
+      </if>
+      <if test="teamsid != null" >
+        #{teamsid,jdbcType=INTEGER},
+      </if>
+      <if test="carno != null" >
+        #{carno,jdbcType=VARCHAR},
+      </if>
+      <if test="carbrand != null" >
+        #{carbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carmilion != null" >
+        #{carmilion,jdbcType=REAL},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Fieldvehicle" >
+    update fieldvehicle
+    <set >
+      <if test="teamsid != null" >
+        teamsid = #{teamsid,jdbcType=INTEGER},
+      </if>
+      <if test="carno != null" >
+        carno = #{carno,jdbcType=VARCHAR},
+      </if>
+      <if test="carbrand != null" >
+        carbrand = #{carbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        cartype = #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carmilion != null" >
+        carmilion = #{carmilion,jdbcType=REAL},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+    </set>
+    where fieldid = #{fieldid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Fieldvehicle" >
+    update fieldvehicle
+    set teamsid = #{teamsid,jdbcType=INTEGER},
+      carno = #{carno,jdbcType=VARCHAR},
+      carbrand = #{carbrand,jdbcType=VARCHAR},
+      cartype = #{cartype,jdbcType=VARCHAR},
+      carmilion = #{carmilion,jdbcType=REAL},
+      state = #{state,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL}
+    where fieldid = #{fieldid,jdbcType=INTEGER}
+  </update>
+</mapper>

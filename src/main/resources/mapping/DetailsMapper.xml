@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.DetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Details" >
+    <id column="detailsId" property="detailsid" jdbcType="INTEGER" />
+    <result column="oid" property="oid" jdbcType="VARCHAR" />
+    <result column="detailsname" property="detailsname" jdbcType="VARCHAR" />
+    <result column="detailsprice" property="detailsprice" jdbcType="DECIMAL" />
+    <result column="detailsdate" property="detailsdate" jdbcType="INTEGER" />
+    <result column="detailscount" property="detailscount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    detailsId, oid, detailsname, detailsprice, detailsdate, detailscount
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from details
+    where detailsId = #{detailsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from details
+    where detailsId = #{detailsid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Details" >
+    insert into details (detailsId, oid, detailsname, 
+      detailsprice, detailsdate, detailscount
+      )
+    values (#{detailsid,jdbcType=INTEGER}, #{oid,jdbcType=VARCHAR}, #{detailsname,jdbcType=VARCHAR}, 
+      #{detailsprice,jdbcType=DECIMAL}, #{detailsdate,jdbcType=INTEGER}, #{detailscount,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Details" >
+    insert into details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detailsid != null" >
+        detailsId,
+      </if>
+      <if test="oid != null" >
+        oid,
+      </if>
+      <if test="detailsname != null" >
+        detailsname,
+      </if>
+      <if test="detailsprice != null" >
+        detailsprice,
+      </if>
+      <if test="detailsdate != null" >
+        detailsdate,
+      </if>
+      <if test="detailscount != null" >
+        detailscount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detailsid != null" >
+        #{detailsid,jdbcType=INTEGER},
+      </if>
+      <if test="oid != null" >
+        #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="detailsname != null" >
+        #{detailsname,jdbcType=VARCHAR},
+      </if>
+      <if test="detailsprice != null" >
+        #{detailsprice,jdbcType=DECIMAL},
+      </if>
+      <if test="detailsdate != null" >
+        #{detailsdate,jdbcType=INTEGER},
+      </if>
+      <if test="detailscount != null" >
+        #{detailscount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Details" >
+    update details
+    <set >
+      <if test="oid != null" >
+        oid = #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="detailsname != null" >
+        detailsname = #{detailsname,jdbcType=VARCHAR},
+      </if>
+      <if test="detailsprice != null" >
+        detailsprice = #{detailsprice,jdbcType=DECIMAL},
+      </if>
+      <if test="detailsdate != null" >
+        detailsdate = #{detailsdate,jdbcType=INTEGER},
+      </if>
+      <if test="detailscount != null" >
+        detailscount = #{detailscount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where detailsId = #{detailsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Details" >
+    update details
+    set oid = #{oid,jdbcType=VARCHAR},
+      detailsname = #{detailsname,jdbcType=VARCHAR},
+      detailsprice = #{detailsprice,jdbcType=DECIMAL},
+      detailsdate = #{detailsdate,jdbcType=INTEGER},
+      detailscount = #{detailscount,jdbcType=INTEGER}
+    where detailsId = #{detailsid,jdbcType=INTEGER}
+  </update>
+</mapper>

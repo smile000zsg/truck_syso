@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.EmployeeMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Employee" >
+    <id column="empid" property="empid" jdbcType="INTEGER" />
+    <result column="deptid" property="deptid" jdbcType="INTEGER" />
+    <result column="postid" property="postid" jdbcType="INTEGER" />
+    <result column="resid" property="resid" jdbcType="INTEGER" />
+    <result column="empname" property="empname" jdbcType="VARCHAR" />
+    <result column="empsex" property="empsex" jdbcType="VARCHAR" />
+    <result column="empaccount" property="empaccount" jdbcType="VARCHAR" />
+    <result column="emppwd" property="emppwd" jdbcType="VARCHAR" />
+    <result column="empcard" property="empcard" jdbcType="VARCHAR" />
+    <result column="empphone" property="empphone" jdbcType="VARCHAR" />
+    <result column="empemail" property="empemail" jdbcType="VARCHAR" />
+    <result column="empaddress" property="empaddress" jdbcType="VARCHAR" />
+    <result column="empborne" property="empborne" jdbcType="DATE" />
+    <result column="empEntrydate" property="empentrydate" jdbcType="DATE" />
+    <result column="empCorrectdate" property="empcorrectdate" jdbcType="DATE" />
+    <result column="empstate" property="empstate" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    empid, deptid, postid, resid, empname, empsex, empaccount, emppwd, empcard, empphone, 
+    empemail, empaddress, empborne, empEntrydate, empCorrectdate, empstate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from employee
+    where empid = #{empid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from employee
+    where empid = #{empid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Employee" >
+    insert into employee (empid, deptid, postid, 
+      resid, empname, empsex, 
+      empaccount, emppwd, empcard, 
+      empphone, empemail, empaddress, 
+      empborne, empEntrydate, empCorrectdate, 
+      empstate)
+    values (#{empid,jdbcType=INTEGER}, #{deptid,jdbcType=INTEGER}, #{postid,jdbcType=INTEGER}, 
+      #{resid,jdbcType=INTEGER}, #{empname,jdbcType=VARCHAR}, #{empsex,jdbcType=VARCHAR}, 
+      #{empaccount,jdbcType=VARCHAR}, #{emppwd,jdbcType=VARCHAR}, #{empcard,jdbcType=VARCHAR}, 
+      #{empphone,jdbcType=VARCHAR}, #{empemail,jdbcType=VARCHAR}, #{empaddress,jdbcType=VARCHAR}, 
+      #{empborne,jdbcType=DATE}, #{empentrydate,jdbcType=DATE}, #{empcorrectdate,jdbcType=DATE}, 
+      #{empstate,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Employee" >
+    insert into employee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="empid != null" >
+        empid,
+      </if>
+      <if test="deptid != null" >
+        deptid,
+      </if>
+      <if test="postid != null" >
+        postid,
+      </if>
+      <if test="resid != null" >
+        resid,
+      </if>
+      <if test="empname != null" >
+        empname,
+      </if>
+      <if test="empsex != null" >
+        empsex,
+      </if>
+      <if test="empaccount != null" >
+        empaccount,
+      </if>
+      <if test="emppwd != null" >
+        emppwd,
+      </if>
+      <if test="empcard != null" >
+        empcard,
+      </if>
+      <if test="empphone != null" >
+        empphone,
+      </if>
+      <if test="empemail != null" >
+        empemail,
+      </if>
+      <if test="empaddress != null" >
+        empaddress,
+      </if>
+      <if test="empborne != null" >
+        empborne,
+      </if>
+      <if test="empentrydate != null" >
+        empEntrydate,
+      </if>
+      <if test="empcorrectdate != null" >
+        empCorrectdate,
+      </if>
+      <if test="empstate != null" >
+        empstate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="empid != null" >
+        #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=INTEGER},
+      </if>
+      <if test="postid != null" >
+        #{postid,jdbcType=INTEGER},
+      </if>
+      <if test="resid != null" >
+        #{resid,jdbcType=INTEGER},
+      </if>
+      <if test="empname != null" >
+        #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="empsex != null" >
+        #{empsex,jdbcType=VARCHAR},
+      </if>
+      <if test="empaccount != null" >
+        #{empaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="emppwd != null" >
+        #{emppwd,jdbcType=VARCHAR},
+      </if>
+      <if test="empcard != null" >
+        #{empcard,jdbcType=VARCHAR},
+      </if>
+      <if test="empphone != null" >
+        #{empphone,jdbcType=VARCHAR},
+      </if>
+      <if test="empemail != null" >
+        #{empemail,jdbcType=VARCHAR},
+      </if>
+      <if test="empaddress != null" >
+        #{empaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="empborne != null" >
+        #{empborne,jdbcType=DATE},
+      </if>
+      <if test="empentrydate != null" >
+        #{empentrydate,jdbcType=DATE},
+      </if>
+      <if test="empcorrectdate != null" >
+        #{empcorrectdate,jdbcType=DATE},
+      </if>
+      <if test="empstate != null" >
+        #{empstate,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Employee" >
+    update employee
+    <set >
+      <if test="deptid != null" >
+        deptid = #{deptid,jdbcType=INTEGER},
+      </if>
+      <if test="postid != null" >
+        postid = #{postid,jdbcType=INTEGER},
+      </if>
+      <if test="resid != null" >
+        resid = #{resid,jdbcType=INTEGER},
+      </if>
+      <if test="empname != null" >
+        empname = #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="empsex != null" >
+        empsex = #{empsex,jdbcType=VARCHAR},
+      </if>
+      <if test="empaccount != null" >
+        empaccount = #{empaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="emppwd != null" >
+        emppwd = #{emppwd,jdbcType=VARCHAR},
+      </if>
+      <if test="empcard != null" >
+        empcard = #{empcard,jdbcType=VARCHAR},
+      </if>
+      <if test="empphone != null" >
+        empphone = #{empphone,jdbcType=VARCHAR},
+      </if>
+      <if test="empemail != null" >
+        empemail = #{empemail,jdbcType=VARCHAR},
+      </if>
+      <if test="empaddress != null" >
+        empaddress = #{empaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="empborne != null" >
+        empborne = #{empborne,jdbcType=DATE},
+      </if>
+      <if test="empentrydate != null" >
+        empEntrydate = #{empentrydate,jdbcType=DATE},
+      </if>
+      <if test="empcorrectdate != null" >
+        empCorrectdate = #{empcorrectdate,jdbcType=DATE},
+      </if>
+      <if test="empstate != null" >
+        empstate = #{empstate,jdbcType=INTEGER},
+      </if>
+    </set>
+    where empid = #{empid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Employee" >
+    update employee
+    set deptid = #{deptid,jdbcType=INTEGER},
+      postid = #{postid,jdbcType=INTEGER},
+      resid = #{resid,jdbcType=INTEGER},
+      empname = #{empname,jdbcType=VARCHAR},
+      empsex = #{empsex,jdbcType=VARCHAR},
+      empaccount = #{empaccount,jdbcType=VARCHAR},
+      emppwd = #{emppwd,jdbcType=VARCHAR},
+      empcard = #{empcard,jdbcType=VARCHAR},
+      empphone = #{empphone,jdbcType=VARCHAR},
+      empemail = #{empemail,jdbcType=VARCHAR},
+      empaddress = #{empaddress,jdbcType=VARCHAR},
+      empborne = #{empborne,jdbcType=DATE},
+      empEntrydate = #{empentrydate,jdbcType=DATE},
+      empCorrectdate = #{empcorrectdate,jdbcType=DATE},
+      empstate = #{empstate,jdbcType=INTEGER}
+    where empid = #{empid,jdbcType=INTEGER}
+  </update>
+</mapper>

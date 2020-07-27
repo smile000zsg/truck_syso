@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.CarfileMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Carfile" >
+    <id column="Carfile_id" property="carfileId" jdbcType="INTEGER" />
+    <result column="Carfile_typeid" property="carfileTypeid" jdbcType="INTEGER" />
+    <result column="Carfile_number" property="carfileNumber" jdbcType="VARCHAR" />
+    <result column="Carfile_type" property="carfileType" jdbcType="VARCHAR" />
+    <result column="Carfile_name" property="carfileName" jdbcType="VARCHAR" />
+    <result column="Carfile_state" property="carfileState" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Carfile_id, Carfile_typeid, Carfile_number, Carfile_type, Carfile_name, Carfile_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from carfile
+    where Carfile_id = #{carfileId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from carfile
+    where Carfile_id = #{carfileId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Carfile" >
+    insert into carfile (Carfile_id, Carfile_typeid, Carfile_number, 
+      Carfile_type, Carfile_name, Carfile_state
+      )
+    values (#{carfileId,jdbcType=INTEGER}, #{carfileTypeid,jdbcType=INTEGER}, #{carfileNumber,jdbcType=VARCHAR}, 
+      #{carfileType,jdbcType=VARCHAR}, #{carfileName,jdbcType=VARCHAR}, #{carfileState,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Carfile" >
+    insert into carfile
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="carfileId != null" >
+        Carfile_id,
+      </if>
+      <if test="carfileTypeid != null" >
+        Carfile_typeid,
+      </if>
+      <if test="carfileNumber != null" >
+        Carfile_number,
+      </if>
+      <if test="carfileType != null" >
+        Carfile_type,
+      </if>
+      <if test="carfileName != null" >
+        Carfile_name,
+      </if>
+      <if test="carfileState != null" >
+        Carfile_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="carfileId != null" >
+        #{carfileId,jdbcType=INTEGER},
+      </if>
+      <if test="carfileTypeid != null" >
+        #{carfileTypeid,jdbcType=INTEGER},
+      </if>
+      <if test="carfileNumber != null" >
+        #{carfileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carfileType != null" >
+        #{carfileType,jdbcType=VARCHAR},
+      </if>
+      <if test="carfileName != null" >
+        #{carfileName,jdbcType=VARCHAR},
+      </if>
+      <if test="carfileState != null" >
+        #{carfileState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Carfile" >
+    update carfile
+    <set >
+      <if test="carfileTypeid != null" >
+        Carfile_typeid = #{carfileTypeid,jdbcType=INTEGER},
+      </if>
+      <if test="carfileNumber != null" >
+        Carfile_number = #{carfileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carfileType != null" >
+        Carfile_type = #{carfileType,jdbcType=VARCHAR},
+      </if>
+      <if test="carfileName != null" >
+        Carfile_name = #{carfileName,jdbcType=VARCHAR},
+      </if>
+      <if test="carfileState != null" >
+        Carfile_state = #{carfileState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Carfile_id = #{carfileId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Carfile" >
+    update carfile
+    set Carfile_typeid = #{carfileTypeid,jdbcType=INTEGER},
+      Carfile_number = #{carfileNumber,jdbcType=VARCHAR},
+      Carfile_type = #{carfileType,jdbcType=VARCHAR},
+      Carfile_name = #{carfileName,jdbcType=VARCHAR},
+      Carfile_state = #{carfileState,jdbcType=INTEGER}
+    where Carfile_id = #{carfileId,jdbcType=INTEGER}
+  </update>
+</mapper>

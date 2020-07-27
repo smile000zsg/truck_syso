@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.TeamsMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Teams" >
+    <id column="teamsid" property="teamsid" jdbcType="INTEGER" />
+    <result column="teamsname" property="teamsname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    teamsid, teamsname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from teams
+    where teamsid = #{teamsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from teams
+    where teamsid = #{teamsid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Teams" >
+    insert into teams (teamsid, teamsname)
+    values (#{teamsid,jdbcType=INTEGER}, #{teamsname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Teams" >
+    insert into teams
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="teamsid != null" >
+        teamsid,
+      </if>
+      <if test="teamsname != null" >
+        teamsname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="teamsid != null" >
+        #{teamsid,jdbcType=INTEGER},
+      </if>
+      <if test="teamsname != null" >
+        #{teamsname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Teams" >
+    update teams
+    <set >
+      <if test="teamsname != null" >
+        teamsname = #{teamsname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where teamsid = #{teamsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Teams" >
+    update teams
+    set teamsname = #{teamsname,jdbcType=VARCHAR}
+    where teamsid = #{teamsid,jdbcType=INTEGER}
+  </update>
+</mapper>

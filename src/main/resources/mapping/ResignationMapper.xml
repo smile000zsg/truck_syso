@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.ResignationMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Resignation" >
+    <id column="resid" property="resid" jdbcType="INTEGER" />
+    <result column="deptid" property="deptid" jdbcType="INTEGER" />
+    <result column="empid" property="empid" jdbcType="INTEGER" />
+    <result column="resdate" property="resdate" jdbcType="DATE" />
+    <result column="resignationreson" property="resignationreson" jdbcType="VARCHAR" />
+    <result column="resstate" property="resstate" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    resid, deptid, empid, resdate, resignationreson, resstate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from resignation
+    where resid = #{resid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from resignation
+    where resid = #{resid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Resignation" >
+    insert into resignation (resid, deptid, empid, 
+      resdate, resignationreson, resstate
+      )
+    values (#{resid,jdbcType=INTEGER}, #{deptid,jdbcType=INTEGER}, #{empid,jdbcType=INTEGER}, 
+      #{resdate,jdbcType=DATE}, #{resignationreson,jdbcType=VARCHAR}, #{resstate,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Resignation" >
+    insert into resignation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resid != null" >
+        resid,
+      </if>
+      <if test="deptid != null" >
+        deptid,
+      </if>
+      <if test="empid != null" >
+        empid,
+      </if>
+      <if test="resdate != null" >
+        resdate,
+      </if>
+      <if test="resignationreson != null" >
+        resignationreson,
+      </if>
+      <if test="resstate != null" >
+        resstate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resid != null" >
+        #{resid,jdbcType=INTEGER},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=INTEGER},
+      </if>
+      <if test="empid != null" >
+        #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="resdate != null" >
+        #{resdate,jdbcType=DATE},
+      </if>
+      <if test="resignationreson != null" >
+        #{resignationreson,jdbcType=VARCHAR},
+      </if>
+      <if test="resstate != null" >
+        #{resstate,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Resignation" >
+    update resignation
+    <set >
+      <if test="deptid != null" >
+        deptid = #{deptid,jdbcType=INTEGER},
+      </if>
+      <if test="empid != null" >
+        empid = #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="resdate != null" >
+        resdate = #{resdate,jdbcType=DATE},
+      </if>
+      <if test="resignationreson != null" >
+        resignationreson = #{resignationreson,jdbcType=VARCHAR},
+      </if>
+      <if test="resstate != null" >
+        resstate = #{resstate,jdbcType=INTEGER},
+      </if>
+    </set>
+    where resid = #{resid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Resignation" >
+    update resignation
+    set deptid = #{deptid,jdbcType=INTEGER},
+      empid = #{empid,jdbcType=INTEGER},
+      resdate = #{resdate,jdbcType=DATE},
+      resignationreson = #{resignationreson,jdbcType=VARCHAR},
+      resstate = #{resstate,jdbcType=INTEGER}
+    where resid = #{resid,jdbcType=INTEGER}
+  </update>
+</mapper>

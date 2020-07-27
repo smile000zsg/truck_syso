@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.Service_TypeMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Service_Type" >
+    <id column="Service_typeid" property="serviceTypeid" jdbcType="INTEGER" />
+    <result column="Service_typenumber" property="serviceTypenumber" jdbcType="VARCHAR" />
+    <result column="Service_typename" property="serviceTypename" jdbcType="VARCHAR" />
+    <result column="Service_state" property="serviceState" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Service_typeid, Service_typenumber, Service_typename, Service_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from service_type
+    where Service_typeid = #{serviceTypeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from service_type
+    where Service_typeid = #{serviceTypeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Service_Type" >
+    insert into service_type (Service_typeid, Service_typenumber, 
+      Service_typename, Service_state)
+    values (#{serviceTypeid,jdbcType=INTEGER}, #{serviceTypenumber,jdbcType=VARCHAR}, 
+      #{serviceTypename,jdbcType=VARCHAR}, #{serviceState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Service_Type" >
+    insert into service_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serviceTypeid != null" >
+        Service_typeid,
+      </if>
+      <if test="serviceTypenumber != null" >
+        Service_typenumber,
+      </if>
+      <if test="serviceTypename != null" >
+        Service_typename,
+      </if>
+      <if test="serviceState != null" >
+        Service_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serviceTypeid != null" >
+        #{serviceTypeid,jdbcType=INTEGER},
+      </if>
+      <if test="serviceTypenumber != null" >
+        #{serviceTypenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTypename != null" >
+        #{serviceTypename,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceState != null" >
+        #{serviceState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Service_Type" >
+    update service_type
+    <set >
+      <if test="serviceTypenumber != null" >
+        Service_typenumber = #{serviceTypenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTypename != null" >
+        Service_typename = #{serviceTypename,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceState != null" >
+        Service_state = #{serviceState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Service_typeid = #{serviceTypeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Service_Type" >
+    update service_type
+    set Service_typenumber = #{serviceTypenumber,jdbcType=VARCHAR},
+      Service_typename = #{serviceTypename,jdbcType=VARCHAR},
+      Service_state = #{serviceState,jdbcType=INTEGER}
+    where Service_typeid = #{serviceTypeid,jdbcType=INTEGER}
+  </update>
+</mapper>
