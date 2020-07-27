@@ -14,6 +14,7 @@ public class MyInterceptor1 implements HandlerInterceptor {
 		System.out.println("开始拦截器1");
 		System.out.println("接收Token:"+request.getParameter("token"));
 		//需要判断token是否过期，如果过期则发送过期json格式,让客户端立马跳转登陆页面
+		//111
 		return true;
 	}
 
