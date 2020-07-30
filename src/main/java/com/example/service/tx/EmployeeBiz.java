@@ -20,7 +20,7 @@ public class EmployeeBiz {
 	
 	public PageInfo<Employee> queryAll(int pageNum,int pageSize){
 		PageHelper.startPage(pageNum, pageSize);
-		return new PageInfo<Employee>(employeeDao.queryAll());
+		return new PageInfo<Employee>(employeeDao.queryAllEmp());
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = false)

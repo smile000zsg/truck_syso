@@ -18,7 +18,7 @@ import com.example.service.tx.EmployeeBiz;
 import com.github.pagehelper.PageInfo;
 
 @RestController
-@RequestMapping("api/TX")
+@RequestMapping("api/TX/emp")
 public class EmployeeAction {
 	
 	@Autowired

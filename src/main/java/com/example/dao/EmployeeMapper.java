@@ -19,6 +19,5 @@ public interface EmployeeMapper {
 
     int updateByPrimaryKey(Employee record);
     
-    @Select("select * from employee where empstate = 0")
-    List<Employee> queryAll();
+    List<Employee> queryAllEmp();
 }

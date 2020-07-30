@@ -2,14 +2,14 @@ package com.example.pojo;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Employee {
     private Integer empid;
 
     private Integer deptid;
 
     private Integer postid;
-
-    private Integer resid;
 
     private String empname;
 
@@ -27,15 +27,38 @@ public class Employee {
 
     private String empaddress;
 
+    @JSONField(format = "yyyy-MM-dd")
     private Date empborne;
 
+    @JSONField(format = "yyyy-MM-dd")
     private Date empentrydate;
 
+    @JSONField(format = "yyyy-MM-dd")
     private Date empcorrectdate;
 
     private Integer empstate;
+    
+    private String deptname;
+    
+    private String postname;
 
-    public Integer getEmpid() {
+    public String getDeptname() {
+		return deptname;
+	}
+
+	public void setDeptname(String deptname) {
+		this.deptname = deptname;
+	}
+
+	public String getPostname() {
+		return postname;
+	}
+
+	public void setPostname(String postname) {
+		this.postname = postname;
+	}
+
+	public Integer getEmpid() {
         return empid;
     }
 
@@ -59,13 +82,6 @@ public class Employee {
         this.postid = postid;
     }
 
-    public Integer getResid() {
-        return resid;
-    }
-
-    public void setResid(Integer resid) {
-        this.resid = resid;
-    }
 
     public String getEmpname() {
         return empname;
