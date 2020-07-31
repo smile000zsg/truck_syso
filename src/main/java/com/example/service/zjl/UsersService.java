@@ -16,6 +16,4 @@ public class UsersService {
 	public int insert(Users record) {
 		return this.um.insert(record);
 	}
-	
-	
 }
