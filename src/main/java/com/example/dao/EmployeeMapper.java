@@ -1,5 +1,9 @@
 package com.example.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Select;
+
 import com.example.pojo.Employee;
 
 public interface EmployeeMapper {
@@ -14,4 +18,6 @@ public interface EmployeeMapper {
     int updateByPrimaryKeySelective(Employee record);
 
     int updateByPrimaryKey(Employee record);
+    
+    List<Employee> queryAllEmp();
 }

@@ -5,7 +5,6 @@
     <id column="empid" property="empid" jdbcType="INTEGER" />
     <result column="deptid" property="deptid" jdbcType="INTEGER" />
     <result column="postid" property="postid" jdbcType="INTEGER" />
-    <result column="resid" property="resid" jdbcType="INTEGER" />
     <result column="empname" property="empname" jdbcType="VARCHAR" />
     <result column="empsex" property="empsex" jdbcType="VARCHAR" />
     <result column="empaccount" property="empaccount" jdbcType="VARCHAR" />
@@ -20,9 +19,16 @@
     <result column="empstate" property="empstate" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    empid, deptid, postid, resid, empname, empsex, empaccount, emppwd, empcard, empphone, 
+    empid, deptid, postid,  empname, empsex, empaccount, emppwd, empcard, empphone, 
     empemail, empaddress, empborne, empEntrydate, empCorrectdate, empstate
   </sql>
+  
+  <select id="queryAllEmp" resultMap="BaseResultMap">
+  	select e.*,postname,deptname from employee e
+  	inner join department d on e.deptid = d.deptid
+  	inner join post p on e.postid = p.postid 
+  	where empstate = 0
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -35,13 +41,13 @@
   </delete>
   <insert id="insert" parameterType="com.example.pojo.Employee" >
     insert into employee (empid, deptid, postid, 
-      resid, empname, empsex, 
+       empname, empsex, 
       empaccount, emppwd, empcard, 
       empphone, empemail, empaddress, 
       empborne, empEntrydate, empCorrectdate, 
       empstate)
     values (#{empid,jdbcType=INTEGER}, #{deptid,jdbcType=INTEGER}, #{postid,jdbcType=INTEGER}, 
-      #{resid,jdbcType=INTEGER}, #{empname,jdbcType=VARCHAR}, #{empsex,jdbcType=VARCHAR}, 
+   #{empname,jdbcType=VARCHAR}, #{empsex,jdbcType=VARCHAR}, 
       #{empaccount,jdbcType=VARCHAR}, #{emppwd,jdbcType=VARCHAR}, #{empcard,jdbcType=VARCHAR}, 
       #{empphone,jdbcType=VARCHAR}, #{empemail,jdbcType=VARCHAR}, #{empaddress,jdbcType=VARCHAR}, 
       #{empborne,jdbcType=DATE}, #{empentrydate,jdbcType=DATE}, #{empcorrectdate,jdbcType=DATE}, 
@@ -59,9 +65,7 @@
       <if test="postid != null" >
         postid,
       </if>
-      <if test="resid != null" >
-        resid,
-      </if>
+      
       <if test="empname != null" >
         empname,
       </if>
@@ -109,9 +113,7 @@
       <if test="postid != null" >
         #{postid,jdbcType=INTEGER},
       </if>
-      <if test="resid != null" >
-        #{resid,jdbcType=INTEGER},
-      </if>
+     
       <if test="empname != null" >
         #{empname,jdbcType=VARCHAR},
       </if>
@@ -159,9 +161,7 @@
       <if test="postid != null" >
         postid = #{postid,jdbcType=INTEGER},
       </if>
-      <if test="resid != null" >
-        resid = #{resid,jdbcType=INTEGER},
-      </if>
+      
       <if test="empname != null" >
         empname = #{empname,jdbcType=VARCHAR},
       </if>
@@ -205,7 +205,6 @@
     update employee
     set deptid = #{deptid,jdbcType=INTEGER},
       postid = #{postid,jdbcType=INTEGER},
-      resid = #{resid,jdbcType=INTEGER},
       empname = #{empname,jdbcType=VARCHAR},
       empsex = #{empsex,jdbcType=VARCHAR},
       empaccount = #{empaccount,jdbcType=VARCHAR},
