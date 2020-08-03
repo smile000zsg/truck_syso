@@ -19,6 +19,7 @@
     settlementid, oid, saleon, billtype, settlementmode, state, paymenttime, total, deductionprice, 
     customername, businesstype, carbrand
   </sql>
+  <select id="" ></select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
