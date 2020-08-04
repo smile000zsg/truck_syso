@@ -7,76 +7,25 @@
     <result column="Engine_name" property="engineName" jdbcType="VARCHAR" />
     <result column="Engine_state" property="engineState" jdbcType="INTEGER" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    Engine_id, Engine_number, Engine_name, Engine_state
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from engine
-    where Engine_id = #{engineId,jdbcType=INTEGER}
+  <select id="queryAll" resultType="Engine">
+  	select * from engine
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from engine
-    where Engine_id = #{engineId,jdbcType=INTEGER}
+  
+  <select id="queryById" resultType="Engine">
+  select * from engine where Engine_id=#{Engine.engineId}
+  </select>
+  
+  <insert id="addAll">
+  	insert into engine(Engine_number,Engine_name,Engine_state)
+  	values(#{Engine.engineNumber},#{Engine.engineName},0)
+  </insert>
+  
+  <update id="updateAll">
+  	update engine set Engine_number=#{Engine.engineNumber},Engine_name=#{Engine.engineName},Engine_state=#{Engine.engineState}
+  	where Engine_id=#{Engine.engineId}
+  </update>
+  
+  <delete id="deleteAllById">
+  delete from engine where Engine_id=#{Engine.engineId}
   </delete>
-  <insert id="insert" parameterType="com.example.pojo.Engine" >
-    insert into engine (Engine_id, Engine_number, Engine_name, 
-      Engine_state)
-    values (#{engineId,jdbcType=INTEGER}, #{engineNumber,jdbcType=VARCHAR}, #{engineName,jdbcType=VARCHAR}, 
-      #{engineState,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.example.pojo.Engine" >
-    insert into engine
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="engineId != null" >
-        Engine_id,
-      </if>
-      <if test="engineNumber != null" >
-        Engine_number,
-      </if>
-      <if test="engineName != null" >
-        Engine_name,
-      </if>
-      <if test="engineState != null" >
-        Engine_state,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="engineId != null" >
-        #{engineId,jdbcType=INTEGER},
-      </if>
-      <if test="engineNumber != null" >
-        #{engineNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="engineName != null" >
-        #{engineName,jdbcType=VARCHAR},
-      </if>
-      <if test="engineState != null" >
-        #{engineState,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Engine" >
-    update engine
-    <set >
-      <if test="engineNumber != null" >
-        Engine_number = #{engineNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="engineName != null" >
-        Engine_name = #{engineName,jdbcType=VARCHAR},
-      </if>
-      <if test="engineState != null" >
-        Engine_state = #{engineState,jdbcType=INTEGER},
-      </if>
-    </set>
-    where Engine_id = #{engineId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Engine" >
-    update engine
-    set Engine_number = #{engineNumber,jdbcType=VARCHAR},
-      Engine_name = #{engineName,jdbcType=VARCHAR},
-      Engine_state = #{engineState,jdbcType=INTEGER}
-    where Engine_id = #{engineId,jdbcType=INTEGER}
-  </update>
 </mapper>
