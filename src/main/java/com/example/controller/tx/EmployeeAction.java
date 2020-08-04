@@ -1,6 +1,8 @@
 package com.example.controller.tx;
 
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.hibernate.validator.constraints.pl.REGON;
@@ -13,8 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.pojo.Employee;
+import com.example.pojo.Resignation;
 import com.example.service.tx.EmployeeBiz;
+import com.example.service.tx.ResignationBiz;
 import com.github.pagehelper.PageInfo;
 
 @RestController
@@ -23,6 +29,9 @@ public class EmployeeAction {
 	
 	@Autowired
 	private EmployeeBiz employeeBiz;
+	
+	@Autowired
+	private ResignationBiz resignationBiz;
 
 	@GetMapping("{p}/{s}")
 	public PageInfo<Employee> queryAll(@PathVariable("p") int p,@PathVariable("s") int s){
@@ -50,6 +59,40 @@ public class EmployeeAction {
 		}else {
 			msg.put("code", 300);
 		}
+		return msg;
+	}
+	
+	@PutMapping("res/{id}/{deptid}/{reason}")
+	public Map<String, Object> resignationById(@PathVariable("id") Integer id ,@PathVariable("deptid") Integer deptid,
+			@PathVariable("reason")String reason){
+		Map<String, Object> msg = new HashMap<>();
+		int count = employeeBiz.resignationById(id);
+		if(count>0) {
+			Resignation res = new Resignation();
+			res.setEmpid(id);
+			res.setDeptid(deptid);
+			res.setResdate(new Date());
+			res.setResignationreson(reason);
+			int result = resignationBiz.addResignation(res);
+			if(result > 0) {
+				msg.put("code", "200");
+			}else {
+				msg.put("code", "300");
+			}
+		}else {
+			msg.put("code", "300");
+		}
+		return msg;
+	}
+	
+	@PutMapping("update2")
+	public Map<String, Object> updateDirectory(@RequestBody List<Employee> empList){
+		Map<String, Object> msg = new HashMap<>();
+		List<Employee> emp = JSONObject.parseArray(JSON.toJSONString(empList), Employee.class);
+		for (Employee employee : emp) {
+			employeeBiz.updateEmployee(employee);
+		}
+		msg.put("code", "200");
 		return msg;
 	}
 }

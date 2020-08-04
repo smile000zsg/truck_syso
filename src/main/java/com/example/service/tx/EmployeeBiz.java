@@ -32,4 +32,14 @@ public class EmployeeBiz {
 	public int updateEmployee(Employee emp) {
 		return employeeDao.updateByPrimaryKeySelective(emp);
 	}
+	
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = false)
+	public int resignationById(Integer id) {
+		return employeeDao.resignationById(id);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = false)
+	public int rollbackById(Integer id) {
+		return employeeDao.rollbackById(id);
+	}
 }
