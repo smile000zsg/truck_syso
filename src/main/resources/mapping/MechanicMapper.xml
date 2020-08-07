@@ -19,6 +19,11 @@
     mecid, teamsid, starsid, oid, mecname, mecsex, mecphone, mecborndate, mecaddress, 
     meccard, mecstate, mecprice
   </sql>
+  <select id="queryAllMec" resultMap="BaseResultMap">
+  	SELECT m.*,teamsname,starslevel FROM mechanic m 
+	INNER JOIN teams t ON m.teamsid = t.teamsid
+	INNER JOIN stars s ON m.starsid = s.starsid
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

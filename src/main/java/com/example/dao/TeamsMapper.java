@@ -1,5 +1,9 @@
 package com.example.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Select;
+
 import com.example.pojo.Teams;
 
 public interface TeamsMapper {
@@ -14,4 +18,7 @@ public interface TeamsMapper {
     int updateByPrimaryKeySelective(Teams record);
 
     int updateByPrimaryKey(Teams record);
+    
+    @Select("select * from teams")
+    List<Teams> queryAll();
 }

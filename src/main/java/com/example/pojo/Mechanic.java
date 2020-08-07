@@ -2,6 +2,8 @@ package com.example.pojo;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Mechanic {
     private Integer mecid;
 
@@ -16,7 +18,8 @@ public class Mechanic {
     private String mecsex;
 
     private String mecphone;
-
+    
+    @JSONField(format = "yyyy-MM-dd")
     private Date mecborndate;
 
     private String mecaddress;
@@ -26,8 +29,28 @@ public class Mechanic {
     private Integer mecstate;
 
     private Float mecprice;
+    
+    private String teamsname;
+    
+    private String starslevel;
 
-    public Integer getMecid() {
+    public String getTeamsname() {
+		return teamsname;
+	}
+
+	public void setTeamsname(String teamsname) {
+		this.teamsname = teamsname;
+	}
+
+	public String getStarslevel() {
+		return starslevel;
+	}
+
+	public void setStarslevel(String starslevel) {
+		this.starslevel = starslevel;
+	}
+
+	public Integer getMecid() {
         return mecid;
     }
 
