@@ -5,13 +5,30 @@
     <id column="uid" property="uid" jdbcType="INTEGER" />
     <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="cratetime" property="cratetime" jdbcType="DATE" />
     <result column="vipcard" property="vipcard" jdbcType="VARCHAR" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="integral" property="integral" jdbcType="INTEGER" />
     <result column="balance" property="balance" jdbcType="REAL" />
+    <collection property="recharge" javaType="java.util.ArrayList" ofType="com.example.pojo.Recharge">
+		<id column="rechargeid" property="rechargeid" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="rechargetime" property="rechargetime" jdbcType="DATE" />
+		<result column="pricestate" property="pricestate" jdbcType="INTEGER" />
+		<result column="price" property="price" jdbcType="INTEGER" />
+	</collection>
   </resultMap>
+  	
+  	<select id="selectAll" resultMap="BaseResultMap">
+  		 SELECT * FROM users LEFT  JOIN recharge ON(users.`uid` = recharge.`uid`)
+  	</select>
+  
+  	<select id="selecyByCard" resultMap="BaseResultMap">
+  		  SELECT * FROM users LEFT  JOIN recharge ON(users.`uid` = recharge.`uid`) WHERE  vipcard = #{vipcard}
+  	</select>
+  
   <sql id="Base_Column_List" >
     uid, account, password, vipcard, username, sex, phone, integral, balance
   </sql>
@@ -29,12 +46,12 @@
     where uid = #{uid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.example.pojo.Users" >
-    insert into users (uid, account, password, 
+    insert into users (uid, account, password, cratetime,
       vipcard, username, sex, 
       phone, integral, balance
       )
-    values (#{uid,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{vipcard,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+    values (#{uid,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+     #{cratetime,jdbcType=DATE},#{vipcard,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{integral,jdbcType=INTEGER}, #{balance,jdbcType=REAL}
       )
   </insert>

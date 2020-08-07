@@ -1,14 +1,21 @@
 package com.example.pojo;
 
+import java.util.Date;
+import java.util.List;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Users {
     private Integer uid;
 
     private String account;
 
     private String password;
+    @JSONField(format = "yyyy-MM-dd")
+    private Date cratetime;
 
     private String vipcard;
-
+   
     private String username;
 
     private String sex;
@@ -18,8 +25,27 @@ public class Users {
     private Integer integral;
 
     private Float balance;
+    
+    private List<Recharge> recharge;
+    
+    public List<Object> setObject;
+    
+    public List<Object> getSetObject() {
+		return setObject;
+	}
 
-    public Integer getUid() {
+	public void setSetObject(List<Object> setObject) {
+		this.setObject = setObject;
+	}
+
+	public List<Recharge> getRecharge() {
+		return recharge;
+	}
+	public void setRecharge(List<Recharge> recharge) {
+		this.recharge = recharge;
+	}
+
+	public Integer getUid() {
         return uid;
     }
 
@@ -90,4 +116,13 @@ public class Users {
     public void setBalance(Float balance) {
         this.balance = balance;
     }
+   
+	public Date getCratetime() {
+		return cratetime;
+	}
+	
+	public void setCratetime(Date cratetime) {
+		this.cratetime = cratetime;
+	}
+    
 }

@@ -6,6 +6,7 @@
     <result column="uid" property="uid" jdbcType="INTEGER" />
     <result column="rechargetime" property="rechargetime" jdbcType="DATE" />
     <result column="pricestate" property="pricestate" jdbcType="INTEGER" />
+     <result column="price" property="price" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     rechargeid, uid, rechargetime, pricestate
@@ -78,5 +79,8 @@
       rechargetime = #{rechargetime,jdbcType=DATE},
       pricestate = #{pricestate,jdbcType=INTEGER}
     where rechargeid = #{rechargeid,jdbcType=INTEGER}
+  </update>
+  <update id="udateprice" parameterType="int">
+  		update recharge set price=price+#{price} where uid=#{uid}
   </update>
 </mapper>

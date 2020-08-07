@@ -2,6 +2,7 @@ package com.example.pojo;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
 public class Settlement {
     private Integer settlementid;
 
@@ -14,7 +15,8 @@ public class Settlement {
     private String settlementmode;
 
     private Integer state;
-
+    
+    @JSONField(format = "yyyy-MM-dd")
     private Date paymenttime;
 
     private Float total;
@@ -26,8 +28,20 @@ public class Settlement {
     private String businesstype;
 
     private String carbrand;
+    
+    private Order order;
+    
+    
+    
+    public Order getOrder() {
+		return order;
+	}
 
-    public Integer getSettlementid() {
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public Integer getSettlementid() {
         return settlementid;
     }
 
@@ -74,7 +88,6 @@ public class Settlement {
     public void setState(Integer state) {
         this.state = state;
     }
-
     public Date getPaymenttime() {
         return paymenttime;
     }

@@ -1,5 +1,7 @@
 package com.example.dao;
 
+import java.util.List;
+
 import com.example.pojo.Settlement;
 
 public interface SettlementMapper {
@@ -14,4 +16,6 @@ public interface SettlementMapper {
     int updateByPrimaryKeySelective(Settlement record);
 
     int updateByPrimaryKey(Settlement record);
+    
+    List<Settlement> querySettlement();
 }
