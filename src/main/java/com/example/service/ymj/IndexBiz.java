@@ -21,11 +21,11 @@ public class IndexBiz {
 	@Autowired
 	private SettlementMapper setlementmapper;
 	
-	public Settlement selectByDayMoney(Date paymenttime) {
-		return setlementmapper.selectByDayMoney(paymenttime);
-	}
-	
-	public List<Settlement>  query(){
-		return this.setlementmapper.query();
-	}
+//	public Settlement selectByDayMoney(Date paymenttime) {
+//		return setlementmapper.selectByDayMoney(paymenttime);
+//	}
+//	
+//	public List<Settlement>  query(){
+//		return this.setlementmapper.query();
+//	}
 }

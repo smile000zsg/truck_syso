@@ -18,16 +18,16 @@ public class IndexAction {
 	@Autowired
 	private IndexBiz biz;
 	
-	@GetMapping("money")
-	public Settlement SelectByDayMoney() {
-		
-		Date paymenttime = new Date();
-		System.out.println("当前时间："+paymenttime);
-		return biz.selectByDayMoney(paymenttime);
-	}
+//	@GetMapping("money")
+//	public Settlement SelectByDayMoney() {
+//		
+//		Date paymenttime = new Date();
+//		System.out.println("当前时间："+paymenttime);
+//		return biz.selectByDayMoney(paymenttime);
+//	}
 	
-	@GetMapping
-	public List<Settlement> query(){
-		return this.biz.query();
-	}
+//	@GetMapping
+//	public List<Settlement> query(){
+//		return this.biz.query();
+//	}
 }
