@@ -14,11 +14,13 @@ import com.example.service.tx.DepartmentBiz;
 @RequestMapping("api/TX/dept")
 public class DepartmentAction {
 
-	@Autowired
-	private DepartmentBiz departmentBiz;
+	  @Autowired
+	  private DepartmentBiz departmentBiz;
 
-	@GetMapping("query")
-	public List<Department> queryAllDept(){
-		return departmentBiz.queryAllDept();
-	}
+
+	  @GetMapping("query") 
+	  public List<Department> queryAllDept(){ 
+		  return departmentBiz.queryAllDept(); 
+	  }
+
 }

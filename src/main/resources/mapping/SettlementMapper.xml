@@ -19,12 +19,17 @@
     settlementid, oid, saleon, billtype, settlementmode, state, paymenttime, total, deductionprice, 
     customername, businesstype, carbrand
   </sql>
-  <select id="" ></select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from settlement
     where settlementid = #{settlementid,jdbcType=INTEGER}
+  </select>
+  <select id="query" resultType="com.example.pojo.Settlement">
+  		select * from settlement
+  </select>
+  <select id="selectByDayMoney" resultType="com.example.pojo.Settlement">
+  		SELECT SUM(total) FROM settlement WHERE paymenttime=#{paymenttime}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from settlement

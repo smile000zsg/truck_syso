@@ -16,14 +16,14 @@ public class EngineBiz {
 	@Autowired
 	private EngineMapper enginemapper;
 	
-	public PageInfo<Engine> findPersonListByPage(Integer pageNum, Integer pageSize) {
+	public PageInfo<Engine> findPersonListByPage(Integer pageNum, Integer pageSize,String engineNumber) {
 		//pageNum 当前是第几页 pageSize每一页需要显示多少页数
 		PageHelper.startPage(pageNum, pageSize);
-		return new PageInfo<Engine>(enginemapper.queryAll());
+		return new PageInfo<Engine>(enginemapper.queryAll(engineNumber));
 	}
 
-	public List<Engine> seleteAll(){
-		return enginemapper.queryAll();
+	public List<Engine> EngineByLikename(String engineName){
+		return enginemapper.EngineByLikename(engineName);
 	}
 	public Engine getEngineById(Integer engineId) {
 		return enginemapper.queryById(engineId);

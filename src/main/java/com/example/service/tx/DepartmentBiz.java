@@ -15,10 +15,10 @@ import com.example.pojo.Department;
 @Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED, readOnly = true)
 public class DepartmentBiz {
 
-	@Autowired
-	private DepartmentMapper departmentDao;
+	 @Autowired
+	 private DepartmentMapper departmentDao;
 	
-	public List<Department> queryAllDept(){
-		return departmentDao.queryAllDept();
-	}
+	  public List<Department> queryAllDept(){
+		  return departmentDao.queryAllDept();
+	  }
 }
