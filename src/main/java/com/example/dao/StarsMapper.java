@@ -1,5 +1,9 @@
 package com.example.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Select;
+
 import com.example.pojo.Stars;
 
 public interface StarsMapper {
@@ -14,4 +18,7 @@ public interface StarsMapper {
     int updateByPrimaryKeySelective(Stars record);
 
     int updateByPrimaryKey(Stars record);
+    
+    @Select("select * from stars")
+    List<Stars> queryAll();
 }

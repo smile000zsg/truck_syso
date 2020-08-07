@@ -3,6 +3,7 @@ package com.example.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.example.pojo.Employee;
 
@@ -19,6 +20,11 @@ public interface EmployeeMapper {
 
     int updateByPrimaryKey(Employee record);
     
-    @Select("select * from employee where empstate = 0")
-    List<Employee> queryAll();
+    List<Employee> queryAllEmp();
+    
+    @Update("update employee set empstate = 1 where empid = #{id}")
+    int resignationById(Integer id);
+    
+    @Update("update employee set empstate = 0 where empid = #{id}")
+    int rollbackById(Integer id);
 }

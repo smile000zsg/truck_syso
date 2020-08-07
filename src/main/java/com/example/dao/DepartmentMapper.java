@@ -1,5 +1,9 @@
 package com.example.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Select;
+
 import com.example.pojo.Department;
 
 public interface DepartmentMapper {
@@ -14,4 +18,7 @@ public interface DepartmentMapper {
     int updateByPrimaryKeySelective(Department record);
 
     int updateByPrimaryKey(Department record);
+    
+    @Select("select * from department")
+    List<Department> queryAllDept();
 }
