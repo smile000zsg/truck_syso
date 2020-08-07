@@ -14,7 +14,7 @@ public interface SettlementMapper {
     Settlement selectByPrimaryKey(Integer settlementid);
 
     int updateByPrimaryKeySelective(Settlement record);
-
+    
     int updateByPrimaryKey(Settlement record);
     
     List<Settlement> querySettlement();
