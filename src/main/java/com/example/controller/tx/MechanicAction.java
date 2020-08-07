@@ -12,29 +12,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.pojo.Post;
-import com.example.service.tx.PostBiz;
+import com.example.pojo.Mechanic;
+import com.example.service.tx.MechanicBiz;
 
 @RestController
-@RequestMapping("api/TX/post")
-public class PostAction {
+@RequestMapping("api/TX/mec")
+public class MechanicAction {
 
 	@Autowired
-	private PostBiz postBiz;
-	
-	
-	@GetMapping("query")
-	public List<Post> queryAllPost(){
-		return postBiz.queryAllPost();
+	private MechanicBiz mechanicBiz;
+
+	@GetMapping("queryAllMec")
+	public List<Mechanic> queryAllMec(){
+		return mechanicBiz.queryAllMec();
 	}
 	
 	@PostMapping("add")
-	public Map<String, Object> addPost(@RequestBody Post pojo){
+	public Map<String, Object> addMec(@RequestBody Mechanic pojo){
 		Map<String, Object> msg = new HashMap<String, Object>();
-		int count = postBiz.addPost(pojo);
-		if(count > 0) {
+		if(mechanicBiz.addMec(pojo) > 0) {
 			msg.put("code", "200");
 		}else {
 			msg.put("code", "300");
@@ -42,11 +41,10 @@ public class PostAction {
 		return msg;
 	}
 	
-	@DeleteMapping("delete/{postid}")
-	public Map<String, Object> delPost(@PathVariable("postid") Integer postid){
+	@PutMapping("updateMec")
+	public Map<String, Object> updateMec(@RequestBody Mechanic pojo){
 		Map<String, Object> msg = new HashMap<String, Object>();
-		int count = postBiz.delPost(postid);
-		if(count > 0) {
+		if(mechanicBiz.updateMec(pojo) > 0) {
 			msg.put("code", "200");
 		}else {
 			msg.put("code", "300");
@@ -54,11 +52,10 @@ public class PostAction {
 		return msg;
 	}
 	
-	@PutMapping("update")
-	public Map<String , Object> updatePost(@RequestBody Post pojo){
+	@DeleteMapping("delMec/{mecid}")
+	public Map<String, Object> delMec(@PathVariable Integer mecid){
 		Map<String, Object> msg = new HashMap<String, Object>();
-		int count = postBiz.updatePost(pojo);
-		if(count > 0) {
+		if(mechanicBiz.delMec(mecid) > 0) {
 			msg.put("code", "200");
 		}else {
 			msg.put("code", "300");

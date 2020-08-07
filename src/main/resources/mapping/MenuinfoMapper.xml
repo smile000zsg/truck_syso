@@ -4,7 +4,23 @@
   <resultMap id="BaseResultMap" type="com.example.pojo.Menuinfo" >
     <id column="fid" property="fid" jdbcType="INTEGER" />
     <result column="menuname" property="menuname" jdbcType="VARCHAR" />
+    <collection property="ment_next" javaType="java.util.ArrayList" ofType="com.example.pojo.Menu_Next">
+		<id column="nid" property="nid" jdbcType="INTEGER" />
+		<result column="next_name" property="next_name" jdbcType="VARCHAR" />
+		<result column="fid" property="fid" jdbcType="INTEGER" />
+	</collection>
+	 <collection property="next_er" javaType="java.util.ArrayList" ofType="com.example.pojo.Next_Er">
+		<id column="eid" property="eid" jdbcType="INTEGER" />
+		<result column="ename" property="ename" jdbcType="VARCHAR" />
+		<result column="nid" property="nid" jdbcType="INTEGER" />
+	</collection>
   </resultMap>
+  
+  <select id="queryAll" resultMap="BaseResultMap">
+  		SELECT * FROM MenuInfo LEFT JOIN menu_next ON(MenuInfo.`fid`=menu_next.`fid`) 
+		LEFT JOIN next_er ON(menu_next.`nid`=next_er.`nid`)
+  </select>
+  
   <sql id="Base_Column_List" >
     fid, menuname
   </sql>

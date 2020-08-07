@@ -1,5 +1,7 @@
 package com.example.dao;
 
+import java.util.List;
+
 import com.example.pojo.Resignation;
 
 public interface ResignationMapper {
@@ -14,4 +16,6 @@ public interface ResignationMapper {
     int updateByPrimaryKeySelective(Resignation record);
 
     int updateByPrimaryKey(Resignation record);
+    
+    List<Resignation> queryAllRes();
 }

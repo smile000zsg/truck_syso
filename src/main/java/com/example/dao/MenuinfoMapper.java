@@ -1,5 +1,7 @@
 package com.example.dao;
 
+import java.util.List;
+
 import com.example.pojo.Menuinfo;
 
 public interface MenuinfoMapper {
@@ -14,4 +16,6 @@ public interface MenuinfoMapper {
     int updateByPrimaryKeySelective(Menuinfo record);
 
     int updateByPrimaryKey(Menuinfo record);
+    
+    List<Menuinfo> queryAll();
 }

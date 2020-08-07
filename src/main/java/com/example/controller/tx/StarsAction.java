@@ -14,39 +14,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.pojo.Post;
-import com.example.service.tx.PostBiz;
+import com.example.pojo.Stars;
+import com.example.service.tx.StarsBiz;
 
 @RestController
-@RequestMapping("api/TX/post")
-public class PostAction {
+@RequestMapping("api/TX/stars")
+public class StarsAction {
 
 	@Autowired
-	private PostBiz postBiz;
-	
-	
-	@GetMapping("query")
-	public List<Post> queryAllPost(){
-		return postBiz.queryAllPost();
+	private StarsBiz starsBiz;
+
+	@GetMapping("queryAllStars")
+	public List<Stars> queryAll(){
+		return starsBiz.queryAll();
 	}
 	
-	@PostMapping("add")
-	public Map<String, Object> addPost(@RequestBody Post pojo){
+	@PostMapping("addStars")
+	public Map<String, Object> addStars(@RequestBody Stars pojo){
 		Map<String, Object> msg = new HashMap<String, Object>();
-		int count = postBiz.addPost(pojo);
-		if(count > 0) {
-			msg.put("code", "200");
-		}else {
-			msg.put("code", "300");
-		}
-		return msg;
-	}
-	
-	@DeleteMapping("delete/{postid}")
-	public Map<String, Object> delPost(@PathVariable("postid") Integer postid){
-		Map<String, Object> msg = new HashMap<String, Object>();
-		int count = postBiz.delPost(postid);
-		if(count > 0) {
+		if(starsBiz.addStars(pojo)>0) {
 			msg.put("code", "200");
 		}else {
 			msg.put("code", "300");
@@ -55,10 +41,20 @@ public class PostAction {
 	}
 	
 	@PutMapping("update")
-	public Map<String , Object> updatePost(@RequestBody Post pojo){
+	public Map<String, Object> updateStars(@RequestBody Stars pojo){
 		Map<String, Object> msg = new HashMap<String, Object>();
-		int count = postBiz.updatePost(pojo);
-		if(count > 0) {
+		if(starsBiz.updateStars(pojo)>0) {
+			msg.put("code", "200");
+		}else {
+			msg.put("code", "300");
+		}
+		return msg;
+	}
+	
+	@DeleteMapping("del/{starsid}")
+	public Map<String, Object> delStars(@PathVariable Integer starsid){
+		Map<String, Object> msg = new HashMap<String, Object>();
+		if(starsBiz.delStars(starsid)>0) {
 			msg.put("code", "200");
 		}else {
 			msg.put("code", "300");

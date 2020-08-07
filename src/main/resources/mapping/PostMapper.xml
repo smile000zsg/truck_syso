@@ -27,19 +27,11 @@
   <insert id="insertSelective" parameterType="com.example.pojo.Post" >
     insert into post
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="postid != null" >
-        postid,
-      </if>
-      
       <if test="postname != null" >
         postname,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="postid != null" >
-        #{postid,jdbcType=INTEGER},
-      </if>
-     
       <if test="postname != null" >
         #{postname,jdbcType=VARCHAR},
       </if>

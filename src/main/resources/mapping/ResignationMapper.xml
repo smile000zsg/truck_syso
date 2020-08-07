@@ -12,6 +12,11 @@
   <sql id="Base_Column_List" >
     resid, deptid, empid, resdate, resignationreson, resstate
   </sql>
+  <select id="queryAllRes" resultMap="BaseResultMap">
+  	SELECT r.*,deptname,empname FROM resignation r
+	INNER JOIN employee e ON r.empid = e.`empid`
+	INNER JOIN department d ON e.`deptid` = d.`deptid`
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

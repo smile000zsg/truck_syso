@@ -8,32 +8,27 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.dao.PostMapper;
-import com.example.pojo.Post;
+import com.example.dao.ResignationMapper;
+import com.example.pojo.Resignation;
 
 @Service
 @Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED, readOnly = true)
-public class PostBiz {
-	
+public class ResignationBiz {
+
 	@Autowired
-	private PostMapper postDao;
+	private ResignationMapper resignationDao;
+
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = false)
+	public int addResignation(Resignation pojo) {
+		return resignationDao.insertSelective(pojo);
+	}
 	
-	public List<Post> queryAllPost(){
-		return postDao.queryAllPost();
+	public List<Resignation> queryAllRes(){
+		return resignationDao.queryAllRes();
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = false)
-	public int addPost(Post post) {
-		return postDao.insertSelective(post);
-	}
-	
-	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = false)
-	public int delPost(Integer id) {
-		return postDao.deleteByPrimaryKey(id);
-	}
-	
-	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = false)
-	public int updatePost(Post pojo) {
-		return postDao.updateByPrimaryKeySelective(pojo);
+	public int delResignation(Integer id) {
+		return resignationDao.deleteByPrimaryKey(id);
 	}
 }

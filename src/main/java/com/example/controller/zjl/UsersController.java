@@ -2,7 +2,6 @@ package com.example.controller.zjl;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.pojo.Users;
 import com.example.service.zjl.UsersService;
+import com.github.pagehelper.PageInfo;
 
 @RestController
 @RequestMapping("/api")
@@ -35,5 +35,14 @@ public class UsersController {
 			message.put("code","200");
 		}	
 		return message;
+	}
+	@GetMapping("page/{pageNum}/{pageSize}")
+	public PageInfo<Users> selectAll(@PathVariable Integer pageNum,@PathVariable Integer pageSize){
+		return this.us.selectAll(pageNum,pageSize);
+	}
+	
+	@GetMapping("{vipcard}")
+	public  Users selecyByCard(@PathVariable String vipcard) {
+		return this.us.selecyByCard(vipcard);
 	}
 }
