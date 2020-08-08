@@ -19,4 +19,6 @@ public interface EngineMapper {
 	public int updateAll(@Param("engine")Engine engine);
 	
 	public int deleteAllById(@Param("engineId")Integer engineId);
+	
+	public List<Engine> queryengine();
 }

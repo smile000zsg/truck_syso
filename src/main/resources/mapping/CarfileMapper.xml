@@ -73,7 +73,4 @@ WHERE `Carfile_id` = #{carfileId}
 <select id="querycarfileType" resultType="com.example.pojo.Carfile_Type">
 	SELECT * FROM carfile_type
 </select>
-<select id="queryengine" resultType="Engine">
-SELECT * FROM `engine`
-</select>
 </mapper>

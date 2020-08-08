@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.CarfileMapper;
+import com.example.dao.EngineMapper;
 import com.example.pojo.Carfile;
 import com.example.pojo.Carfile_Type;
 import com.example.pojo.Engine;
@@ -16,6 +17,8 @@ import com.github.pagehelper.PageInfo;
 public class CarfileBiz {
 	@Autowired
 	private CarfileMapper carfilemapper;
+	@Autowired
+	private EngineMapper enginemapper;
 	
 	public PageInfo<Carfile> findPersonListByPage(Integer pageNum, Integer pageSize,String abc) {
 		//pageNum 当前是第几页 pageSize每一页需要显示多少页数
@@ -44,6 +47,6 @@ public class CarfileBiz {
 	}
 	
 	public List<Engine> queryEngine(){
-		return carfilemapper.queryengine();
+		return enginemapper.queryengine();
 	}
 }

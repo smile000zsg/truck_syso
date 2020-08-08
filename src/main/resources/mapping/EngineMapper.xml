@@ -36,4 +36,8 @@
   <delete id="deleteAllById">
   delete from engine where Engine_id=#{engineId}
   </delete>
+  
+  <select id="queryengine" resultType="Engine">
+	SELECT * FROM `engine`
+	</select>
 </mapper>

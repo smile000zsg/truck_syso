@@ -61,8 +61,8 @@ public class CarfileAction {
 		return message;
 	}
 	@DeleteMapping("carfile/{carfileId}")
-	public Map<String, Object> daleteCarfile(@RequestBody Integer CarfileId){
-		carfilebiz.deleteCarfile(CarfileId);
+	public Map<String, Object> daleteCarfile(@PathVariable Integer carfileId){
+		carfilebiz.deleteCarfile(carfileId);
 		Map<String,Object> message = new HashMap<String,Object>();
 		message.put("code", "200");
 		message.put("msg", "ok");
@@ -74,6 +74,7 @@ public class CarfileAction {
 	}
 	@GetMapping("engine")
 	public List<Engine> QeuryEngine(){
+		System.out.println(carfilebiz.queryEngine().toString());
 		return carfilebiz.queryEngine();
 	}
 }
