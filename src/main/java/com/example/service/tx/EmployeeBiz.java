@@ -18,9 +18,9 @@ public class EmployeeBiz {
 	@Autowired
 	private EmployeeMapper employeeDao;
 	
-	public PageInfo<Employee> queryAll(int pageNum,int pageSize){
+	public PageInfo<Employee> queryAll(int pageNum,int pageSize,String name,String phone,String deptid){
 		PageHelper.startPage(pageNum, pageSize);
-		return new PageInfo<Employee>(employeeDao.queryAllEmp());
+		return new PageInfo<Employee>(employeeDao.queryAllEmp(name,phone,deptid));
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = false)

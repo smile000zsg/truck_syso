@@ -16,6 +16,10 @@
   	SELECT r.*,deptname,empname FROM resignation r
 	INNER JOIN employee e ON r.empid = e.`empid`
 	INNER JOIN department d ON e.`deptid` = d.`deptid`
+	where 1=1
+	<if test="name!=null and name !=''">
+		and empname LIKE '%${name}%'
+	</if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

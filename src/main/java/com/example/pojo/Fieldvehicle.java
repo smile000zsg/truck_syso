@@ -16,8 +16,18 @@ public class Fieldvehicle {
     private Integer state;
 
     private Float price;
+    
+    private String	teamsname;
+   
+    public String getTeamsname() {
+		return teamsname;
+	}
 
-    public Integer getFieldid() {
+	public void setTeamsname(String teamsname) {
+		this.teamsname = teamsname;
+	}
+
+	public Integer getFieldid() {
         return fieldid;
     }
 

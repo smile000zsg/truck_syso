@@ -26,8 +26,8 @@ public class ResignationAction {
 	private EmployeeBiz employeeBiz;
 	
 	@GetMapping("query")
-	public List<Resignation> queryAllRes(){
-		return resignationBiz.queryAllRes();
+	public List<Resignation> queryAllRes(String name){
+		return resignationBiz.queryAllRes(name);
 	}
 	
 	@DeleteMapping("rollback/{empid}/{resid}")

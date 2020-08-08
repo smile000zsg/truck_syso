@@ -12,53 +12,52 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.pojo.Mechanic;
-import com.example.service.tx.MechanicBiz;
+import com.example.pojo.Fieldvehicle;
+import com.example.service.tx.FieldvehicleBiz;
 
 @RestController
-@RequestMapping("api/TX/mec")
-public class MechanicAction {
-
+@RequestMapping("api/TX/fieldvehicle")
+public class FieldvehicleAction {
+	
 	@Autowired
-	private MechanicBiz mechanicBiz;
+	private FieldvehicleBiz fieldvehicleBiz;
 
-	@GetMapping("queryAllMec")
-	public List<Mechanic> queryAllMec(String name,String phone,String teamsid){
-		return mechanicBiz.queryAllMec(name,phone,teamsid);
+	@GetMapping("query")
+	public List<Fieldvehicle> queryAll(){
+		return fieldvehicleBiz.queryAll();
 	}
 	
 	@PostMapping("add")
-	public Map<String, Object> addMec(@RequestBody Mechanic pojo){
+	public Map<String, Object> addFieldvehicle(@RequestBody Fieldvehicle pojo){
 		Map<String, Object> msg = new HashMap<String, Object>();
-		if(mechanicBiz.addMec(pojo) > 0) {
+		if(fieldvehicleBiz.addFieldvehicle(pojo)>0) {
 			msg.put("code", "200");
 		}else {
-			msg.put("code", "300");
+			msg.put("code","300");
 		}
 		return msg;
 	}
 	
-	@PutMapping("updateMec")
-	public Map<String, Object> updateMec(@RequestBody Mechanic pojo){
+	@PutMapping("update")
+	public Map<String, Object> updateFieldvehicle(@RequestBody Fieldvehicle pojo){
 		Map<String, Object> msg = new HashMap<String, Object>();
-		if(mechanicBiz.updateMec(pojo) > 0) {
+		if(fieldvehicleBiz.updateFieldvehicle(pojo)>0) {
 			msg.put("code", "200");
 		}else {
-			msg.put("code", "300");
+			msg.put("code","300");
 		}
 		return msg;
 	}
 	
-	@DeleteMapping("delMec/{mecid}")
-	public Map<String, Object> delMec(@PathVariable Integer mecid){
+	@DeleteMapping("del/{fieldid}")
+	public Map<String, Object> delFieldvehicle(@PathVariable Integer fieldid){
 		Map<String, Object> msg = new HashMap<String, Object>();
-		if(mechanicBiz.delMec(mecid) > 0) {
+		if(fieldvehicleBiz.delFieldvehicle(fieldid)>0) {
 			msg.put("code", "200");
 		}else {
-			msg.put("code", "300");
+			msg.put("code","300");
 		}
 		return msg;
 	}

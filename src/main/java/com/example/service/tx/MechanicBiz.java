@@ -18,8 +18,8 @@ public class MechanicBiz {
 	@Autowired
 	private MechanicMapper mechanicDao;
 	
-	public List<Mechanic> queryAllMec(){
-		return mechanicDao.queryAllMec();
+	public List<Mechanic> queryAllMec(String name,String phone,String teamsid){
+		return mechanicDao.queryAllMec(name,phone,teamsid);
 	}
 	
 	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED, readOnly = true)
