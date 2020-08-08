@@ -14,17 +14,46 @@
     <result column="customername" property="customername" jdbcType="VARCHAR" />
     <result column="businesstype" property="businesstype" jdbcType="VARCHAR" />
     <result column="carbrand" property="carbrand" jdbcType="VARCHAR" />
+    <collection property="order" ofType="com.example.pojo.Order">
+		    <id column="oid" property="oid" jdbcType="VARCHAR" />
+		    <result column="settlementid" property="settlementid" jdbcType="INTEGER" />
+		    <result column="ostate" property="ostate" jdbcType="INTEGER" />
+		    <result column="ovehicle" property="ovehicle" jdbcType="VARCHAR" />
+		    <result column="oremark" property="oremark" jdbcType="VARCHAR" />
+		    <result column="crew" property="crew" jdbcType="VARCHAR" />
+		    <result column="olicense" property="olicense" jdbcType="VARCHAR" />
+		    <result column="ophone" property="ophone" jdbcType="VARCHAR" />
+		    <result column="oname" property="oname" jdbcType="VARCHAR" />
+		    <result column="obrand" property="obrand" jdbcType="VARCHAR" />
+		    <result column="omodel" property="omodel" jdbcType="VARCHAR" />
+		    <result column="sums" property="sums" jdbcType="DECIMAL" />
+		    <result column="odatetime" property="odatetime" jdbcType="DATE" />
+		    <result column="wstate" property="wstate" jdbcType="INTEGER" />
+		    <result column="finishtime" property="finishtime" jdbcType="DATE" />
+		    <result column="rework" property="rework" jdbcType="INTEGER" />
+		    <result column="cause" property="cause" jdbcType="INTEGER" />
+		    <result column="reworkreason" property="reworkreason" jdbcType="VARCHAR" />
+		    <result column="penaltyamount" property="penaltyamount" jdbcType="DECIMAL" />
+	</collection>
   </resultMap>
+  <select id="querySettlement" resultMap="BaseResultMap">
+  	SELECT * FROM  settlement LEFT JOIN `order` ON(settlement.`oid`=`order`.`oid`)
+  </select>
   <sql id="Base_Column_List" >
     settlementid, oid, saleon, billtype, settlementmode, state, paymenttime, total, deductionprice, 
     customername, businesstype, carbrand
   </sql>
-  <select id="" ></select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from settlement
     where settlementid = #{settlementid,jdbcType=INTEGER}
+  </select>
+  <select id="query" resultType="com.example.pojo.Settlement">
+  		select * from settlement
+  </select>
+  <select id="selectByDayMoney" resultType="com.example.pojo.Settlement">
+  		SELECT SUM(total) FROM settlement WHERE paymenttime=#{paymenttime}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from settlement

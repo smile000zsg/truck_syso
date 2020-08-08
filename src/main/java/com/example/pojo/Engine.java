@@ -40,4 +40,11 @@ public class Engine {
     public void setEngineState(Integer engineState) {
         this.engineState = engineState;
     }
+
+	@Override
+	public String toString() {
+		return "Engine [engineId=" + engineId + ", engineNumber=" + engineNumber + ", engineName=" + engineName
+				+ ", engineState=" + engineState + "]";
+	}
+    
 }

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.example.pojo.Order" >
+    <id column="oid" property="oid" jdbcType="VARCHAR" />
+    <result column="settlementid" property="settlementid" jdbcType="INTEGER" />
+    <result column="ostate" property="ostate" jdbcType="INTEGER" />
+    <result column="ovehicle" property="ovehicle" jdbcType="VARCHAR" />
+    <result column="oremark" property="oremark" jdbcType="VARCHAR" />
+    <result column="crew" property="crew" jdbcType="VARCHAR" />
+    <result column="olicense" property="olicense" jdbcType="VARCHAR" />
+    <result column="ophone" property="ophone" jdbcType="VARCHAR" />
+    <result column="oname" property="oname" jdbcType="VARCHAR" />
+    <result column="obrand" property="obrand" jdbcType="VARCHAR" />
+    <result column="omodel" property="omodel" jdbcType="VARCHAR" />
+    <result column="sums" property="sums" jdbcType="DECIMAL" />
+    <result column="odatetime" property="odatetime" jdbcType="DATE" />
+    <result column="wstate" property="wstate" jdbcType="INTEGER" />
+    <result column="finishtime" property="finishtime" jdbcType="DATE" />
+    <result column="rework" property="rework" jdbcType="INTEGER" />
+    <result column="cause" property="cause" jdbcType="INTEGER" />
+    <result column="reworkreason" property="reworkreason" jdbcType="VARCHAR" />
+    <result column="penaltyamount" property="penaltyamount" jdbcType="DECIMAL" />
+    <collection property="details" javaType="java.util.ArrayList" ofType="Details">
+	   	 <id column="detailsId" property="detailsid" jdbcType="INTEGER" />
+	    <result column="oid" property="oid" jdbcType="VARCHAR" />
+	    <result column="detailsname" property="detailsname" jdbcType="VARCHAR" />
+	    <result column="detailsprice" property="detailsprice" jdbcType="DECIMAL" />
+	    <result column="detailsdate" property="detailsdate" jdbcType="INTEGER" />
+	    <result column="detailscount" property="detailscount" jdbcType="INTEGER" />
+    </collection>
+  </resultMap>
+  
+ <select id="queryDetails" resultMap="BaseResultMap">
+ 	 SELECT * FROM `order` LEFT JOIN details ON (`order`.`oid` = details.`oid`)
+	 WHERE `order`.`oid`=#{oid} AND `order`.`wstate` = 1
+ </select>
+  
+  <sql id="Base_Column_List" >
+    oid, settlementid, ostate, ovehicle, oremark, crew, olicense, ophone, oname, obrand, 
+    omodel, sums, odatetime, wstate, finishtime, rework, cause, reworkreason, penaltyamount
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where oid = #{oid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order
+    where oid = #{oid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.pojo.Order" >
+    insert into order (oid, settlementid, ostate, 
+      ovehicle, oremark, crew, 
+      olicense, ophone, oname, 
+      obrand, omodel, sums, 
+      odatetime, wstate, finishtime, 
+      rework, cause, reworkreason, 
+      penaltyamount)
+    values (#{oid,jdbcType=VARCHAR}, #{settlementid,jdbcType=INTEGER}, #{ostate,jdbcType=INTEGER}, 
+      #{ovehicle,jdbcType=VARCHAR}, #{oremark,jdbcType=VARCHAR}, #{crew,jdbcType=VARCHAR}, 
+      #{olicense,jdbcType=VARCHAR}, #{ophone,jdbcType=VARCHAR}, #{oname,jdbcType=VARCHAR}, 
+      #{obrand,jdbcType=VARCHAR}, #{omodel,jdbcType=VARCHAR}, #{sums,jdbcType=DECIMAL}, 
+      #{odatetime,jdbcType=DATE}, #{wstate,jdbcType=INTEGER}, #{finishtime,jdbcType=DATE}, 
+      #{rework,jdbcType=INTEGER}, #{cause,jdbcType=INTEGER}, #{reworkreason,jdbcType=VARCHAR}, 
+      #{penaltyamount,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.pojo.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        oid,
+      </if>
+      <if test="settlementid != null" >
+        settlementid,
+      </if>
+      <if test="ostate != null" >
+        ostate,
+      </if>
+      <if test="ovehicle != null" >
+        ovehicle,
+      </if>
+      <if test="oremark != null" >
+        oremark,
+      </if>
+      <if test="crew != null" >
+        crew,
+      </if>
+      <if test="olicense != null" >
+        olicense,
+      </if>
+      <if test="ophone != null" >
+        ophone,
+      </if>
+      <if test="oname != null" >
+        oname,
+      </if>
+      <if test="obrand != null" >
+        obrand,
+      </if>
+      <if test="omodel != null" >
+        omodel,
+      </if>
+      <if test="sums != null" >
+        sums,
+      </if>
+      <if test="odatetime != null" >
+        odatetime,
+      </if>
+      <if test="wstate != null" >
+        wstate,
+      </if>
+      <if test="finishtime != null" >
+        finishtime,
+      </if>
+      <if test="rework != null" >
+        rework,
+      </if>
+      <if test="cause != null" >
+        cause,
+      </if>
+      <if test="reworkreason != null" >
+        reworkreason,
+      </if>
+      <if test="penaltyamount != null" >
+        penaltyamount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementid != null" >
+        #{settlementid,jdbcType=INTEGER},
+      </if>
+      <if test="ostate != null" >
+        #{ostate,jdbcType=INTEGER},
+      </if>
+      <if test="ovehicle != null" >
+        #{ovehicle,jdbcType=VARCHAR},
+      </if>
+      <if test="oremark != null" >
+        #{oremark,jdbcType=VARCHAR},
+      </if>
+      <if test="crew != null" >
+        #{crew,jdbcType=VARCHAR},
+      </if>
+      <if test="olicense != null" >
+        #{olicense,jdbcType=VARCHAR},
+      </if>
+      <if test="ophone != null" >
+        #{ophone,jdbcType=VARCHAR},
+      </if>
+      <if test="oname != null" >
+        #{oname,jdbcType=VARCHAR},
+      </if>
+      <if test="obrand != null" >
+        #{obrand,jdbcType=VARCHAR},
+      </if>
+      <if test="omodel != null" >
+        #{omodel,jdbcType=VARCHAR},
+      </if>
+      <if test="sums != null" >
+        #{sums,jdbcType=DECIMAL},
+      </if>
+      <if test="odatetime != null" >
+        #{odatetime,jdbcType=DATE},
+      </if>
+      <if test="wstate != null" >
+        #{wstate,jdbcType=INTEGER},
+      </if>
+      <if test="finishtime != null" >
+        #{finishtime,jdbcType=DATE},
+      </if>
+      <if test="rework != null" >
+        #{rework,jdbcType=INTEGER},
+      </if>
+      <if test="cause != null" >
+        #{cause,jdbcType=INTEGER},
+      </if>
+      <if test="reworkreason != null" >
+        #{reworkreason,jdbcType=VARCHAR},
+      </if>
+      <if test="penaltyamount != null" >
+        #{penaltyamount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Order" >
+    update order
+    <set >
+      <if test="settlementid != null" >
+        settlementid = #{settlementid,jdbcType=INTEGER},
+      </if>
+      <if test="ostate != null" >
+        ostate = #{ostate,jdbcType=INTEGER},
+      </if>
+      <if test="ovehicle != null" >
+        ovehicle = #{ovehicle,jdbcType=VARCHAR},
+      </if>
+      <if test="oremark != null" >
+        oremark = #{oremark,jdbcType=VARCHAR},
+      </if>
+      <if test="crew != null" >
+        crew = #{crew,jdbcType=VARCHAR},
+      </if>
+      <if test="olicense != null" >
+        olicense = #{olicense,jdbcType=VARCHAR},
+      </if>
+      <if test="ophone != null" >
+        ophone = #{ophone,jdbcType=VARCHAR},
+      </if>
+      <if test="oname != null" >
+        oname = #{oname,jdbcType=VARCHAR},
+      </if>
+      <if test="obrand != null" >
+        obrand = #{obrand,jdbcType=VARCHAR},
+      </if>
+      <if test="omodel != null" >
+        omodel = #{omodel,jdbcType=VARCHAR},
+      </if>
+      <if test="sums != null" >
+        sums = #{sums,jdbcType=DECIMAL},
+      </if>
+      <if test="odatetime != null" >
+        odatetime = #{odatetime,jdbcType=DATE},
+      </if>
+      <if test="wstate != null" >
+        wstate = #{wstate,jdbcType=INTEGER},
+      </if>
+      <if test="finishtime != null" >
+        finishtime = #{finishtime,jdbcType=DATE},
+      </if>
+      <if test="rework != null" >
+        rework = #{rework,jdbcType=INTEGER},
+      </if>
+      <if test="cause != null" >
+        cause = #{cause,jdbcType=INTEGER},
+      </if>
+      <if test="reworkreason != null" >
+        reworkreason = #{reworkreason,jdbcType=VARCHAR},
+      </if>
+      <if test="penaltyamount != null" >
+        penaltyamount = #{penaltyamount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.pojo.Order" >
+    update order
+    set settlementid = #{settlementid,jdbcType=INTEGER},
+      ostate = #{ostate,jdbcType=INTEGER},
+      ovehicle = #{ovehicle,jdbcType=VARCHAR},
+      oremark = #{oremark,jdbcType=VARCHAR},
+      crew = #{crew,jdbcType=VARCHAR},
+      olicense = #{olicense,jdbcType=VARCHAR},
+      ophone = #{ophone,jdbcType=VARCHAR},
+      oname = #{oname,jdbcType=VARCHAR},
+      obrand = #{obrand,jdbcType=VARCHAR},
+      omodel = #{omodel,jdbcType=VARCHAR},
+      sums = #{sums,jdbcType=DECIMAL},
+      odatetime = #{odatetime,jdbcType=DATE},
+      wstate = #{wstate,jdbcType=INTEGER},
+      finishtime = #{finishtime,jdbcType=DATE},
+      rework = #{rework,jdbcType=INTEGER},
+      cause = #{cause,jdbcType=INTEGER},
+      reworkreason = #{reworkreason,jdbcType=VARCHAR},
+      penaltyamount = #{penaltyamount,jdbcType=DECIMAL}
+    where oid = #{oid,jdbcType=VARCHAR}
+  </update>
+</mapper>

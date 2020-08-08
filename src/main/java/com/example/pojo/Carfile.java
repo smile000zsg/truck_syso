@@ -1,56 +1,82 @@
 package com.example.pojo;
 
+import java.util.List;
+
 public class Carfile {
     private Integer carfileId;
 
     private Integer carfileTypeid;
 
-    private String carfileNumber;
-
-    private String carfileType;
-
-    private String carfileName;
+    private Integer engineTypeid;
+    
+	private String CarfileName;
 
     private Integer carfileState;
+    
+    private Integer carfileprice;
+   	
+ 	private List<Engine> engine;
+ 	
+ 	private List<Carfile_Type>  carfile_type;
+ 	
+	
 
-    public Integer getCarfileId() {
+	public Integer getCarfileTypeid() {
+		return carfileTypeid;
+	}
+
+	public void setCarfileTypeid(Integer carfileTypeid) {
+		this.carfileTypeid = carfileTypeid;
+	}
+
+	public List<Engine> getEngine() {
+		return engine;
+	}
+
+	public void setEngine(List<Engine> engine) {
+		this.engine = engine;
+	}
+
+	public List<Carfile_Type> getCarfile_type() {
+		return carfile_type;
+	}
+
+	public void setCarfile_type(List<Carfile_Type> carfile_type) {
+		this.carfile_type = carfile_type;
+	}
+
+	public Integer getEngineTypeid() {
+		return engineTypeid;
+	}
+
+	public void setEngineTypeid(Integer engineTypeid) {
+		this.engineTypeid = engineTypeid;
+	}
+
+	public String getCarfileName() {
+		return CarfileName;
+	}
+
+	public void setCarfileName(String carfileName) {
+		CarfileName = carfileName;
+	}
+
+
+
+    public Integer getCarfileprice() {
+		return carfileprice;
+	}
+
+	public void setCarfileprice(Integer carfileprice) {
+		this.carfileprice = carfileprice;
+	}
+
+	public Integer getCarfileId() {
         return carfileId;
     }
 
     public void setCarfileId(Integer carfileId) {
         this.carfileId = carfileId;
-    }
-
-    public Integer getCarfileTypeid() {
-        return carfileTypeid;
-    }
-
-    public void setCarfileTypeid(Integer carfileTypeid) {
-        this.carfileTypeid = carfileTypeid;
-    }
-
-    public String getCarfileNumber() {
-        return carfileNumber;
-    }
-
-    public void setCarfileNumber(String carfileNumber) {
-        this.carfileNumber = carfileNumber == null ? null : carfileNumber.trim();
-    }
-
-    public String getCarfileType() {
-        return carfileType;
-    }
-
-    public void setCarfileType(String carfileType) {
-        this.carfileType = carfileType == null ? null : carfileType.trim();
-    }
-
-    public String getCarfileName() {
-        return carfileName;
-    }
-
-    public void setCarfileName(String carfileName) {
-        this.carfileName = carfileName == null ? null : carfileName.trim();
     }
 
     public Integer getCarfileState() {

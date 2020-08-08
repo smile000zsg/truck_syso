@@ -2,16 +2,30 @@ package com.example.pojo;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Recharge {
     private Integer rechargeid;
 
     private Integer uid;
-
+    
+    @JSONField(format = "yyyy-MM-dd")
     private Date rechargetime;
 
     private Integer pricestate;
+    
+    private int price;
+    
 
-    public Integer getRechargeid() {
+    public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public Integer getRechargeid() {
         return rechargeid;
     }
 

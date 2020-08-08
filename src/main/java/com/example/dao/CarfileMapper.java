@@ -1,17 +1,23 @@
 package com.example.dao;
 
-import com.example.pojo.Carfile;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import com.example.pojo.*;
 
 public interface CarfileMapper {
-    int deleteByPrimaryKey(Integer carfileId);
-
-    int insert(Carfile record);
-
-    int insertSelective(Carfile record);
-
-    Carfile selectByPrimaryKey(Integer carfileId);
-
-    int updateByPrimaryKeySelective(Carfile record);
-
-    int updateByPrimaryKey(Carfile record);
+	
+    public List<Carfile> queryByengineAndType(@Param("abc")String abc);
+    
+    public Carfile queryByid(@Param("carfileId") Integer carfileId);
+    
+    public int addCarfile(@Param("Carfile") Carfile carfile);
+    
+    public int updateCarfile(@Param("Carfile") Carfile carfile);
+    
+    public int deteleCarfile(@Param("carfileId")Integer carfileid);
+    
+    public List<Carfile_Type> querycarfileType();
+    
+    public List<Engine> queryengine();
 }

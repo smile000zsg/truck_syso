@@ -8,11 +8,19 @@
     <result column="Engine_state" property="engineState" jdbcType="INTEGER" />
   </resultMap>
   <select id="queryAll" resultType="Engine">
-  	select * from engine
+  	select * from `engine` where 1=1
+  	<if test="engineNumber!=null and engineNumber!=''">
+  		and Engine_number like CONCAT(#{engineNumber},'%','%')
+  	</if>
+  	order by Engine_id asc
+  </select>
+  
+  <select id="EngineByLikename" resultMap="BaseResultMap">
+  	SELECT * FROM engine WHERE ENgine_name LIKE '%'#{Engine_name}'%'
   </select>
   
   <select id="queryById" resultType="Engine">
-  select * from engine where Engine_id=#{Engine.engineId}
+  select * from engine where Engine_id=#{engineId}
   </select>
   
   <insert id="addAll">
@@ -21,11 +29,15 @@
   </insert>
   
   <update id="updateAll">
-  	update engine set Engine_number=#{Engine.engineNumber},Engine_name=#{Engine.engineName},Engine_state=#{Engine.engineState}
-  	where Engine_id=#{Engine.engineId}
+  	update engine set Engine_number=#{engine.engineNumber},Engine_name=#{engine.engineName},Engine_state=#{engine.engineState}
+  	where Engine_id=#{engine.engineId}
   </update>
   
   <delete id="deleteAllById">
-  delete from engine where Engine_id=#{Engine.engineId}
+  delete from engine where Engine_id=#{engineId}
   </delete>
+  
+  <select id="queryengine" resultType="Engine">
+	SELECT * FROM `engine`
+	</select>
 </mapper>

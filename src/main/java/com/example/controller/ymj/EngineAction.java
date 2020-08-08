@@ -1,7 +1,6 @@
 package com.example.controller.ymj;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +24,20 @@ public class EngineAction {
 	@Autowired
 	private EngineBiz enginebiz;
 	
-@GetMapping("{p}/{s}")
-public PageInfo<Engine> queryPage(@PathVariable Integer p, @PathVariable Integer s) {
+@GetMapping("query")
+public PageInfo<Engine> queryPage( String p,  String s,String engineNumber) {
 	System.out.println("分页");
-	return enginebiz.findPersonListByPage(p, s);
+	return enginebiz.findPersonListByPage(Integer.parseInt(p),Integer.parseInt(s) ,engineNumber);
 }
 
 @GetMapping(value = "{p}/{s}/jsonp")
-public JSONPObject getPersonListByPageToJSONP(@PathVariable Integer p, @PathVariable Integer s) throws Exception {
+public JSONPObject getPersonListByPageToJSONP(@PathVariable Integer p, @PathVariable Integer s,String engineNumber) throws Exception {
 	System.out.println("分页jsonp");
 	// 跨域函数名称
 	JSONPObject jsonp = new JSONPObject("callback");// 非常重要。对应jquery中jsonpCallback设置
 	// 追加json数据
 	// callback({})
-	jsonp.addParameter(enginebiz.findPersonListByPage(p, s));
+	jsonp.addParameter(enginebiz.findPersonListByPage(p, s,engineNumber));
 	return jsonp;
 }
 
@@ -47,10 +46,6 @@ public Engine queryById(@PathVariable Integer engineId) {
 	return enginebiz.getEngineById(engineId);
 }
 
-@GetMapping("engine")
-public List<Engine> selectAll(){
-	return enginebiz.seleteAll();
-}
 @PostMapping("engine")
 public Map<String,Object> insertAll(@RequestBody Engine engine){
 	enginebiz.insertEngine(engine);

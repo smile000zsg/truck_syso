@@ -1,5 +1,7 @@
 package com.example.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.example.pojo.Recharge;
 
 public interface RechargeMapper {
@@ -14,4 +16,6 @@ public interface RechargeMapper {
     int updateByPrimaryKeySelective(Recharge record);
 
     int updateByPrimaryKey(Recharge record);
+    
+    int udateprice(@Param("price") int price,@Param("uid") int uid);
 }
