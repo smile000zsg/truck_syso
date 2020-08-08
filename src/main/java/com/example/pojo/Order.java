@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Order {
     private String oid;
 
@@ -28,11 +30,11 @@ public class Order {
     private String omodel;
 
     private BigDecimal sums;
-
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date odatetime;
 
     private Integer wstate;
-
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date finishtime;
 
     private Integer rework;
@@ -43,10 +45,11 @@ public class Order {
 
     private BigDecimal penaltyamount;
     
+    
     private List<Details> details;
+    
+    
 
-    
-    
     public List<Details> getDetails() {
 		return details;
 	}
@@ -55,7 +58,7 @@ public class Order {
 		this.details = details;
 	}
 
-	public String getOid() {
+    public String getOid() {
         return oid;
     }
 
@@ -110,8 +113,9 @@ public class Order {
     public void setOlicense(String olicense) {
         this.olicense = olicense == null ? null : olicense.trim();
     }
-
-    public String getOphone() {
+   
+    
+    public String getOphone() { 
         return ophone;
     }
 

@@ -1,5 +1,7 @@
 package com.example.dao;
 
+import org.apache.ibatis.annotations.Select;
+
 import com.example.pojo.Datum;
 
 public interface DatumMapper {
@@ -14,4 +16,7 @@ public interface DatumMapper {
     int updateByPrimaryKeySelective(Datum record);
 
     int updateByPrimaryKey(Datum record);
+    
+    @Select("SELECT * FROM datum WHERE license=#{license}")
+    Datum queryByid(String license);
 }

@@ -1,7 +1,5 @@
 package com.example.dao;
 
-import java.util.List;
-
 import com.example.pojo.Mechanic;
 
 public interface MechanicMapper {
@@ -16,6 +14,4 @@ public interface MechanicMapper {
     int updateByPrimaryKeySelective(Mechanic record);
 
     int updateByPrimaryKey(Mechanic record);
-    
-    List<Mechanic> queryAllMec();
 }

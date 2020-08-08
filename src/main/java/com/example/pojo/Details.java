@@ -62,4 +62,19 @@ public class Details {
     public void setDetailscount(Integer detailscount) {
         this.detailscount = detailscount;
     }
+
+	public Details(String oid, String detailsname, BigDecimal detailsprice, Integer detailsdate, Integer detailscount) {
+		super();
+		this.oid = oid;
+		this.detailsname = detailsname;
+		this.detailsprice = detailsprice;
+		this.detailsdate = detailsdate;
+		this.detailscount = detailscount;
+	}
+
+	public Details() {
+		super();
+	}
+    
+    
 }

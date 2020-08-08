@@ -23,8 +23,8 @@ public class SettlementController {
 	public PageInfo<Settlement> querySettlement(@PathVariable Integer pageNum,@PathVariable Integer pageSize){
 		return this.ss.querySettlement(pageNum,pageSize);
 	}
-	@GetMapping("queryDetails/{oid}")
-	public List<Order> queryDetails(@PathVariable String oid){
-		return this.ss.queryDetails(oid);
-	}
+	//@GetMapping("queryDetails/{oid}")
+	//public List<Order> queryDetails(@PathVariable String oid){
+	//	return this.ss.queryDetails(oid);
+	//}
 }

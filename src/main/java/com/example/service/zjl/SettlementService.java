@@ -29,8 +29,6 @@ public class SettlementService {
 		return new PageInfo <Settlement>(this.sm.querySettlement());
 	}
 	
-	public List<Order> queryDetails(String oid){
-		return this.om.queryDetails(oid);
-	}
+	
 	
 }

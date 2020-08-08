@@ -21,4 +21,6 @@ public interface TeamsMapper {
     
     @Select("select * from teams")
     List<Teams> queryAll();
+    
+    List<Teams> querys();
 }

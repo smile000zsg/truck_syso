@@ -1,5 +1,9 @@
 package com.example.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Select;
+
 import com.example.pojo.Category;
 
 public interface CategoryMapper {
@@ -14,4 +18,7 @@ public interface CategoryMapper {
     int updateByPrimaryKeySelective(Category record);
 
     int updateByPrimaryKey(Category record);
+    
+    @Select("SELECT * FROM category")
+    List<Category> querys();
 }

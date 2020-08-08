@@ -21,29 +21,27 @@
     <result column="cause" property="cause" jdbcType="INTEGER" />
     <result column="reworkreason" property="reworkreason" jdbcType="VARCHAR" />
     <result column="penaltyamount" property="penaltyamount" jdbcType="DECIMAL" />
-    <collection property="details" javaType="java.util.ArrayList" ofType="Details">
-	   	 <id column="detailsId" property="detailsid" jdbcType="INTEGER" />
-	    <result column="oid" property="oid" jdbcType="VARCHAR" />
-	    <result column="detailsname" property="detailsname" jdbcType="VARCHAR" />
-	    <result column="detailsprice" property="detailsprice" jdbcType="DECIMAL" />
-	    <result column="detailsdate" property="detailsdate" jdbcType="INTEGER" />
-	    <result column="detailscount" property="detailscount" jdbcType="INTEGER" />
-    </collection>
+    <collection property="details" column="oid" select="querydetails">
+   		
+   	</collection>
   </resultMap>
-  
- <select id="queryDetails" resultMap="BaseResultMap">
- 	 SELECT * FROM `order` LEFT JOIN details ON (`order`.`oid` = details.`oid`)
-	 WHERE `order`.`oid`=#{oid} AND `order`.`wstate` = 1
- </select>
-  
   <sql id="Base_Column_List" >
     oid, settlementid, ostate, ovehicle, oremark, crew, olicense, ophone, oname, obrand, 
     omodel, sums, odatetime, wstate, finishtime, rework, cause, reworkreason, penaltyamount
   </sql>
+  
+   <select id="queryorder" resultMap="BaseResultMap">
+  	SELECT * FROM `order` WHERE oid=#{oid}
+  </select>
+  
+  <select id="querydetails" resultType="Details">
+  	SELECT * FROM `details` WHERE oid=#{oid}
+  </select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from order
+    from `order`
     where oid = #{oid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
@@ -67,7 +65,7 @@
       #{penaltyamount,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.example.pojo.Order" >
-    insert into order
+    insert into `order`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="oid != null" >
         oid,
@@ -188,7 +186,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.pojo.Order" >
-    update order
+    update `order`
     <set >
       <if test="settlementid != null" >
         settlementid = #{settlementid,jdbcType=INTEGER},
@@ -248,7 +246,7 @@
     where oid = #{oid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.pojo.Order" >
-    update order
+    update `order`
     set settlementid = #{settlementid,jdbcType=INTEGER},
       ostate = #{ostate,jdbcType=INTEGER},
       ovehicle = #{ovehicle,jdbcType=VARCHAR},

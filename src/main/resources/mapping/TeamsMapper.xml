@@ -4,10 +4,23 @@
   <resultMap id="BaseResultMap" type="com.example.pojo.Teams" >
     <id column="teamsid" property="teamsid" jdbcType="INTEGER" />
     <result column="teamsname" property="teamsname" jdbcType="VARCHAR" />
+   	<collection property="mechanic" column="teamsid" select="querymechanic">
+   		
+   	</collection>
   </resultMap>
   <sql id="Base_Column_List" >
     teamsid, teamsname
   </sql>
+  
+  <select id="querys" resultMap="BaseResultMap" >
+  		SELECT * FROM teams
+  </select>
+  
+  <select id="querymechanic" resultType="Mechanic">
+  		SELECT * FROM mechanic WHERE teamsid=#{teamsid}
+  </select>
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

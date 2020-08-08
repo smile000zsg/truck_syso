@@ -1,5 +1,9 @@
 package com.example.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Select;
+
 import com.example.pojo.Subset;
 
 public interface SubsetMapper {
@@ -14,4 +18,7 @@ public interface SubsetMapper {
     int updateByPrimaryKeySelective(Subset record);
 
     int updateByPrimaryKey(Subset record);
+    
+    @Select("SELECT * FROM subset WHERE cid=#{cid}")
+    List<Subset> queryByid(Integer cid);
 }

@@ -18,9 +18,9 @@ public class MechanicBiz {
 	@Autowired
 	private MechanicMapper mechanicDao;
 	
-	public List<Mechanic> queryAllMec(){
-		return mechanicDao.queryAllMec();
-	}
+	//public List<Mechanic> queryAllMec(){
+	//	return mechanicDao.queryAllMec();
+	//}
 	
 	@Transactional(propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED, readOnly = true)
 	public int addMec(Mechanic pojo) {

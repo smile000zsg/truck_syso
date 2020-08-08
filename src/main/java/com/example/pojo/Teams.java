@@ -1,15 +1,30 @@
 package com.example.pojo;
 
+import java.util.List;
+
 public class Teams {
     private Integer teamsid;
 
     private String teamsname;
+  
+  
+    private List<Mechanic> mechanic;
+    
+    
+    
+	public List<Mechanic> getMechanic() {
+		return mechanic;
+	}
 
-    public Integer getTeamsid() {
-        return teamsid;
-    }
+	public void setMechanic(List<Mechanic> mechanic) {
+		this.mechanic = mechanic;
+	}
 
-    public void setTeamsid(Integer teamsid) {
+	public Integer getTeamsid() {
+		return teamsid;
+	}
+
+	public void setTeamsid(Integer teamsid) {
         this.teamsid = teamsid;
     }
 
