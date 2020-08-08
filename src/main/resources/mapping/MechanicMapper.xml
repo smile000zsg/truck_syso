@@ -23,6 +23,16 @@
   	SELECT m.*,teamsname,starslevel FROM mechanic m 
 	INNER JOIN teams t ON m.teamsid = t.teamsid
 	INNER JOIN stars s ON m.starsid = s.starsid
+	where 1=1
+	<if test="name !=null and name !=''">
+		and mecname LIKE '%${name}%'
+	</if>
+	<if test="phone !=null and phone !=''">
+		and mecphone =#{phone}
+	</if>
+	<if test="teamsid !=null and teamsid !=''">
+		and m.teamsid = #{teamsid}
+	</if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

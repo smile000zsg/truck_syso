@@ -28,6 +28,15 @@
   	inner join department d on e.deptid = d.deptid
   	inner join post p on e.postid = p.postid 
   	where empstate = 0
+  	<if test="name!=null and name != ''">
+  		and empname LIKE '%${name}%'
+  	</if>
+  	<if test="phone !=null and phone !=''">
+  		and empphone = #{phone}
+  	</if>
+  	<if test="deptid !=null and deptid !=''">
+  		and e.deptid = #{deptid}
+  	</if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

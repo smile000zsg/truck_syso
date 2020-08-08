@@ -2,6 +2,8 @@ package com.example.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.example.pojo.Resignation;
 
 public interface ResignationMapper {
@@ -17,5 +19,5 @@ public interface ResignationMapper {
 
     int updateByPrimaryKey(Resignation record);
     
-    List<Resignation> queryAllRes();
+    List<Resignation> queryAllRes(@Param("name")String name);
 }

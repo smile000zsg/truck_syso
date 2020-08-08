@@ -33,9 +33,9 @@ public class EmployeeAction {
 	@Autowired
 	private ResignationBiz resignationBiz;
 
-	@GetMapping("{p}/{s}")
-	public PageInfo<Employee> queryAll(@PathVariable("p") int p,@PathVariable("s") int s){
-		return employeeBiz.queryAll(p, s);
+	@GetMapping("query")
+	public PageInfo<Employee> queryAll(String p,String s,String name,String phone,String deptid){
+		return employeeBiz.queryAll(Integer.parseInt(p),Integer.parseInt(s),name,phone,deptid);
 	}
 	
 	@PostMapping("add")

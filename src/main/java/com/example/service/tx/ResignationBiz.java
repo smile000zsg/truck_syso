@@ -23,8 +23,8 @@ public class ResignationBiz {
 		return resignationDao.insertSelective(pojo);
 	}
 	
-	public List<Resignation> queryAllRes(){
-		return resignationDao.queryAllRes();
+	public List<Resignation> queryAllRes(String name){
+		return resignationDao.queryAllRes(name);
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = false)

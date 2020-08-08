@@ -25,17 +25,11 @@
   <insert id="insertSelective" parameterType="com.example.pojo.Stars" >
     insert into stars
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="starsid != null" >
-        starsid,
-      </if>
       <if test="starslevel != null" >
         starslevel,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="starsid != null" >
-        #{starsid,jdbcType=INTEGER},
-      </if>
       <if test="starslevel != null" >
         #{starslevel,jdbcType=VARCHAR},
       </if>

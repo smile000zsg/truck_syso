@@ -2,6 +2,7 @@ package com.example.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -20,7 +21,7 @@ public interface EmployeeMapper {
 
     int updateByPrimaryKey(Employee record);
     
-    List<Employee> queryAllEmp();
+    List<Employee> queryAllEmp(@Param("name")String name,@Param("phone")String phone,@Param("deptid")String deptid);
     
     @Update("update employee set empstate = 1 where empid = #{id}")
     int resignationById(Integer id);
