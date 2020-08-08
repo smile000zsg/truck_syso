@@ -1,5 +1,9 @@
 package com.example.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.example.pojo.Mechanic;
 
 public interface MechanicMapper {
@@ -14,4 +18,6 @@ public interface MechanicMapper {
     int updateByPrimaryKeySelective(Mechanic record);
 
     int updateByPrimaryKey(Mechanic record);
+    
+    List<Mechanic> queryAllMec(@Param("name")String name ,@Param("phone")String phone,@Param("teamsid") String teamsid);
 }

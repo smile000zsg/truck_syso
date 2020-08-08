@@ -25,11 +25,10 @@ public class MechanicAction {
 	@Autowired
 	private MechanicBiz mechanicBiz;
 
-	//@GetMapping("queryAllMec")
-	//public List<Mechanic> queryAllMec(){
-	//	return mechanicBiz.queryAllMec();
-	//}
-	
+	@GetMapping("queryAllMec")
+	public List<Mechanic> queryAllMec(String name,String phone,String teamsid){
+		return mechanicBiz.queryAllMec(name,phone,teamsid);
+	}
 	@PostMapping("add")
 	public Map<String, Object> addMec(@RequestBody Mechanic pojo){
 		Map<String, Object> msg = new HashMap<String, Object>();
