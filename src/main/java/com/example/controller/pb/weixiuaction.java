@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.pojo.Datum;
 import com.example.pojo.Order;
 import com.example.service.pb.Datumbiz;
+import com.example.service.pb.Teamsbiz;
 import com.example.service.pb.orderbiz;
 
 
@@ -24,7 +25,8 @@ public class weixiuaction {
 	@Autowired
 	private orderbiz orderbi;
 	
-
+	@Autowired
+	private Teamsbiz teamsbiz;
 
 	@GetMapping("queryByid/{olicense}")
 	public Map<String , Object> queryByid(@PathVariable("olicense")String olicense) {
@@ -54,6 +56,7 @@ public class weixiuaction {
 		int coun=orderbi.adddate(o);
 		Map<String, Object> message=new HashMap<String, Object>();
 		if(coun>0) {
+			int count=teamsbiz.updatemecstate(o.getCrew());
 			message.put("code", "200");
 		}else {
 			message.put("code", "300");
@@ -64,8 +67,7 @@ public class weixiuaction {
 	
 	@PostMapping("zwwx/order")
 	public Map<String, Object> insert1(@RequestBody Order o) {
-		System.out.println(o.getOid());
-		System.out.println(o.getOvehicle());
+		
 		int coun=orderbi.adddate(o);
 		Map<String, Object> message=new HashMap<String, Object>();
 		if(coun>0) {
@@ -80,11 +82,10 @@ public class weixiuaction {
 	
 	@PostMapping("zwwx/order1")
 	public Map<String, Object> insert2(@RequestBody Order o) {
-		System.out.println(o.getOid());
-		System.out.println(o.getOvehicle());
 		int coun=orderbi.adddate(o);
 		Map<String, Object> message=new HashMap<String, Object>();
 		if(coun>0) {
+			int count=teamsbiz.updatemecstate(o.getCrew());
 			int c=orderbi.updateByid(o.getOvehicle());
 			message.put("code", "200");
 		}else {

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.pojo.Fieldvehicle;
 import com.example.pojo.Order;
+import com.example.service.pb.Teamsbiz;
 import com.example.service.pb.orderbiz;
 import com.github.pagehelper.PageInfo;
 
@@ -28,6 +29,9 @@ public class Orderaction {
 	
 	@Autowired
 	private orderbiz orderbi;
+	
+	@Autowired
+	private Teamsbiz teamsbiz;
 	
 	@GetMapping("/queryBys")
 	public PageInfo<Order> querys(Integer p,Integer s,String oid,Integer wstate,String odatetime) {
@@ -54,13 +58,15 @@ public class Orderaction {
 		return o;
 	}
 	
-	@PutMapping("{oid}")
-	public Map<String, Object> updateBywstate(@PathVariable("oid")String oid) {
+	@PutMapping("{oid}/{crew}")
+	public Map<String, Object> updateBywstate(@PathVariable("oid")String oid,@PathVariable("crew")String crew) {
+		System.out.println("123"+crew);
 		Map<String, Object> message=new HashMap<String, Object>();
 		String finishtime=LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 		System.out.println(finishtime);
 		int count=orderbi.updateBywstate(oid,finishtime);
 		if(count>0) {
+			int cc=teamsbiz.updatemecstates(crew);
 			message.put("code", "200");
 		}else {
 			message.put("code", "300");
