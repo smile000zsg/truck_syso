@@ -28,4 +28,9 @@ public interface ClientMapper {
 	    
 	    @Select("SELECT * FROM CLIENT where clid=#{clid}")
 	    Client queryByid(String clid);
+	    
+	    Client queryByclid(String clid);
+	    
+	    @Select("SELECT * FROM `client` WHERE clname=#{clname}")
+	    List<Client> queryByname(String clname);
 }

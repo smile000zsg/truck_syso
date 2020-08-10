@@ -15,11 +15,23 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="clstate" property="clstate" jdbcType="INTEGER" />
+    <collection property="datums" column="clid" select="querydatums">
+   		
+   	</collection>
   </resultMap>
   <sql id="Base_Column_List" >
     clid, did, clname, cldate, clsex, clidentity, clphone, province, city, district, 
     address, remark, clstate
   </sql>
+  
+  <select id="queryByclid" resultMap="BaseResultMap">
+  		SELECT * FROM `client` WHERE clid=#{clid}
+  </select>
+  
+  <select id="querydatums" resultType="Datum">
+  		SELECT * FROM datum WHERE clid=#{clid}
+  </select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />

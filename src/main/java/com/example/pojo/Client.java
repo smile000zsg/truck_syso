@@ -29,7 +29,20 @@ public class Client {
 
     private Integer clstate;
 
-    public String getClid() {
+    private Datum datums;
+    
+    
+
+
+	public Datum getDatums() {
+		return datums;
+	}
+
+	public void setDatums(Datum datums) {
+		this.datums = datums;
+	}
+
+	public String getClid() {
         return clid;
     }
 

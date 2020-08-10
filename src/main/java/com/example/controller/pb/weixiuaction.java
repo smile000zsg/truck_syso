@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.pojo.Datum;
 import com.example.pojo.Order;
+import com.example.service.pb.Datumbiz;
 import com.example.service.pb.orderbiz;
 
 
@@ -24,20 +25,28 @@ public class weixiuaction {
 	private orderbiz orderbi;
 	
 
+
 	@GetMapping("queryByid/{olicense}")
 	public Map<String , Object> queryByid(@PathVariable("olicense")String olicense) {
-		System.out.println(olicense);
-		Order o=orderbi.queryByolicense(olicense);
 		Map<String , Object> message=new HashMap<String, Object>();
-		if(o!=null) {
-			message.put("code", "300");
+		Datum datum=orderbi.queryByid(olicense);
+		if(datum==null) {
+			message.put("code","500");
+			System.out.println("12");
 		}else {
-			Datum d=orderbi.queryByid(olicense);
-			message.put("zhi", d);
-			message.put("code", "200");
-		}
+			Order o=orderbi.queryByolicense(olicense);
+			if(o!=null) {
+				message.put("code", "300");
+			}else {
+				Datum d=orderbi.queryByid(olicense);
+				message.put("zhi", d);
+				message.put("code", "200");
+			}
+		}		
 		return message;
 	}
+	
+	
 	
 	
 	@PostMapping("order")
@@ -55,6 +64,22 @@ public class weixiuaction {
 	
 	@PostMapping("zwwx/order")
 	public Map<String, Object> insert1(@RequestBody Order o) {
+		System.out.println(o.getOid());
+		System.out.println(o.getOvehicle());
+		int coun=orderbi.adddate(o);
+		Map<String, Object> message=new HashMap<String, Object>();
+		if(coun>0) {
+			int c=orderbi.updateByid(o.getOvehicle());
+			message.put("code", "200");
+		}else {
+			message.put("code", "300");
+		}
+		return message;
+	}
+	
+	
+	@PostMapping("zwwx/order1")
+	public Map<String, Object> insert2(@RequestBody Order o) {
 		System.out.println(o.getOid());
 		System.out.println(o.getOvehicle());
 		int coun=orderbi.adddate(o);

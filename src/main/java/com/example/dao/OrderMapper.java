@@ -1,6 +1,7 @@
 package com.example.dao;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -8,6 +9,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.example.pojo.Order;
+
+import lombok.experimental.PackagePrivate;
 
 public interface OrderMapper {
     int deleteByPrimaryKey(String oid);
@@ -22,8 +25,11 @@ public interface OrderMapper {
 
     int updateByPrimaryKey(Order record);
     
-    @Select("SELECT * FROM `order` WHERE wstate=0 OR wstate=2")
-    List<Order> querys();
+ 
+    @Select("SELECT * FROM `order`")
+    List<Order> seletlistwstate();
+    
+    List<Order> querys(@Param("oid")String oid,@Param("wstate")Integer wstate,@Param("odatetime")String odatetime);
     
     @Select("SELECT * FROM `order` WHERE wstate=0 OR wstate=2 AND olicense=#{olicense}")
     Order queryByid(String olicense);
@@ -38,4 +44,11 @@ public interface OrderMapper {
     
     @Update("UPDATE `trucksystem`.`order` SET `rework` = `rework`+1,`sums`=`sums`+#{sums},wstate=2 WHERE `oid` = #{oid}")
     int updateBy(@Param("sums")BigDecimal sums,@Param("oid")String oid);
+    
+    @Select("SELECT * FROM `order` WHERE olicense=#{olicense} AND finishtime<=#{finishtime} AND wstate=1")
+    List<Order> list(@Param("olicense")String olicense,@Param("finishtime")Date finishtime);
+    
+    @Select("SELECT * FROM `order` WHERE wstate=#{wstate}")
+    List<Order> queryBywstatelist(Integer wstate);
+    
 }

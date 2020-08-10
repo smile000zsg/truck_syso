@@ -29,10 +29,24 @@ public class Orderaction {
 	@Autowired
 	private orderbiz orderbi;
 	
-	@GetMapping("{p}/{s}")
-	public PageInfo<Order> querys(@PathVariable Integer p, @PathVariable Integer s) {
-		return orderbi.query(p, s);
+	@GetMapping("/queryBys")
+	public PageInfo<Order> querys(Integer p,Integer s,String oid,Integer wstate,String odatetime) {
+		System.out.println(oid);
+		System.out.println(wstate);
+		System.out.println(odatetime);
+		return orderbi.query(p, s,oid,wstate,odatetime);
 	}
+	
+	@GetMapping("{p}/{s}/{wstate}")
+	public PageInfo<Order> queryBywstatelist(@PathVariable Integer p, @PathVariable Integer s,@PathVariable Integer wstate) {
+		return orderbi.queryBywstatelist(p, s, wstate);
+	}
+	
+	@GetMapping("{p}/{s}")
+	public PageInfo<Order> seletlistwstate(@PathVariable Integer p, @PathVariable Integer s) {
+		return orderbi.seletlistwstate(p, s);
+	}
+	
 	
 	@GetMapping("{oid}")
 	public Order queryorder(@PathVariable("oid")String oid) {

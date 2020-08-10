@@ -19,4 +19,7 @@ public interface DatumMapper {
     
     @Select("SELECT * FROM datum WHERE license=#{license}")
     Datum queryByid(String license);
+    
+    @Select("SELECT * FROM datum WHERE clid=#{clid}")
+    Datum queryByclid(String clid);
 }

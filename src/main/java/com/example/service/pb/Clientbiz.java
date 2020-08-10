@@ -25,6 +25,11 @@ public class Clientbiz {
 		return new PageInfo<Client>(clientmapper.querys());
 	}
 	
+	public PageInfo<Client> queryByname(Integer pageNum, Integer pageSize,String cliname) {
+		PageHelper.startPage(pageNum, pageSize);
+		return new PageInfo<Client>(clientmapper.queryByname(cliname));
+	}
+	
 	public Client queryByid(String clid) {
 		return clientmapper.queryByid(clid);
 	}
@@ -42,6 +47,10 @@ public class Clientbiz {
 	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = false)
 	public void updateByPrimaryKeySelective(Client record) {
 		clientmapper.updateByPrimaryKeySelective(record);
+	}
+	
+	public Client queryByclid(String clid) {
+		return clientmapper.queryByclid(clid);
 	}
 	
 

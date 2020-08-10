@@ -17,7 +17,7 @@
   </select>
   
   <select id="querymechanic" resultType="Mechanic">
-  		SELECT * FROM mechanic WHERE teamsid=#{teamsid}
+  		SELECT * FROM mechanic WHERE mecstate=0 AND teamsid=#{teamsid}
   </select>
   
   

@@ -1,6 +1,7 @@
 package com.example.service.pb;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -33,6 +34,12 @@ public class orderbiz {
 	@Autowired
 	private OrderMapper ordermapper;
 	
+	
+	//查询车辆维修记录
+	public List<Order> list(String olicense,Date finishtime) {
+		return ordermapper.list(olicense, finishtime);
+	}
+	
 	public Datum queryByid(String license) {
 		return datummapper.queryByid(license);
 	}
@@ -44,10 +51,23 @@ public class orderbiz {
 		return count;
 	}
 	
-	public PageInfo<Order> query(Integer pageNum, Integer pageSize) {
+	public PageInfo<Order> query(Integer pageNum, Integer pageSize,String oid,Integer wstate,String odatetime) {
 		PageHelper.startPage(pageNum, pageSize);
-		return new PageInfo<Order>(ordermapper.querys());
+		return new PageInfo<Order>(ordermapper.querys(oid,wstate,odatetime));
 	}
+	
+	public PageInfo<Order> seletlistwstate(Integer pageNum, Integer pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		return new PageInfo<Order>(ordermapper.seletlistwstate());
+	}
+	
+	//根据状态查询
+	public PageInfo<Order> queryBywstatelist(Integer pageNum, Integer pageSize,Integer wstate) {
+		PageHelper.startPage(pageNum, pageSize);
+		return new PageInfo<Order>(ordermapper.queryBywstatelist(wstate));
+	}
+	
+	
 	
 	
 	public Order queryByolicense(String olicense) {

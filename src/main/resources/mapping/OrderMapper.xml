@@ -30,6 +30,14 @@
     omodel, sums, odatetime, wstate, finishtime, rework, cause, reworkreason, penaltyamount
   </sql>
   
+  <select id="querys" resultMap="BaseResultMap">
+  		SELECT * FROM `order` WHERE 1=1
+  		<if test="oid!=null and oid!='' "> and oid like '%${oid}%' </if>
+  		<if test="wstate!=null and wstate!='' "> and wstate=#{wstate} </if>
+  		<if test="odatetime!=null and odatetime!='' "> and odatetime=#{odatetime} </if>
+  </select>
+  
+  
    <select id="queryorder" resultMap="BaseResultMap">
   	SELECT * FROM `order` WHERE oid=#{oid}
   </select>
